@@ -51,7 +51,7 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, a, assign, blurb, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, input_box, keys, li, line, linearGradient, main, mat3, ol, p, path, pattern, polygon, polyline, radialGradient, rect, ref, ref1, root, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
+	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, main, mat3, ol, p, path, pattern, polygon, polyline, radialGradient, rect, ref, ref1, root, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
 
 	ref = __webpack_require__(2)(), _ = ref._, gl_mat = ref.gl_mat, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys;
 
@@ -311,137 +311,6 @@
 	      'font-size': reviews_number.font_size,
 	      textLength: reviews_number.text_width
 	    }, "(+388)"));
-	  }
-	});
-
-	blurb = rr({
-	  componentWillReceiveProps: function(next_props) {
-	    return this.setState({
-	      M: next_props.M
-	    });
-	  },
-	  getInitialState: function() {
-	    return {
-	      M: this.props.M
-	    };
-	  },
-	  main_rect: function() {
-	    var subj;
-	    subj = {
-	      width: 160,
-	      height: 20,
-	      x: -80,
-	      y: -80
-	    };
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
-	      width: subj.width * this.state.M[0],
-	      height: -(subj.height * this.state.M[4])
-	    };
-	  },
-	  render: function() {
-	    var rect_0;
-	    rect_0 = this.main_rect();
-	    return svg({
-	      width: '100%',
-	      height: '100%'
-	    }, rect({
-	      x: rect_0.origin[0],
-	      y: rect_0.origin[1],
-	      width: rect_0.width,
-	      height: rect_0.height,
-	      fill: 'white'
-	    }), text({
-	      fill: 'red',
-	      x: rect_0.origin[0],
-	      y: rect_0.origin[1] + rect_0.height * .8,
-	      fontSize: rect_0.height * .7,
-	      onClick: this.capture_text,
-	      onBlur: this.cancel_capture
-	    }, this.props.message));
-	  }
-	});
-
-	input_box = rr({
-	  componentWillReceiveProps: function(next_props) {
-	    return this.setState({
-	      M: next_props.M
-	    });
-	  },
-	  cancel_capture: function() {
-	    return document.onkeydown = null;
-	  },
-	  capture_text: function() {
-	    this.setState({
-	      input_text: ""
-	    });
-	    return document.onkeydown = (function(_this) {
-	      return function(e) {
-	        if (e.keyCode === 13) {
-	          if (_this.state.input_text.length > 0) {
-	            c("send message", _this.state.input_text);
-	            _this.props.send_message(_this.state.input_text);
-	            return _this.setState({
-	              input_text: ""
-	            });
-	          }
-	        } else if (e.keyCode === 8) {
-	          if (_this.state.input_text.length > 0) {
-	            return _this.setState({
-	              input_text: _this.state.input_text.slice(0, -1)
-	            });
-	          }
-	        } else {
-	          return _this.setState({
-	            input_text: _this.state.input_text += e.key
-	          });
-	        }
-	      };
-	    })(this);
-	  },
-	  getInitialState: function() {
-	    return {
-	      M: this.props.M,
-	      input_text: 'placeholder'
-	    };
-	  },
-	  main_rect: function() {
-	    var subj;
-	    subj = {
-	      width: 160,
-	      height: 20,
-	      x: -80,
-	      y: -80
-	    };
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
-	      width: subj.width * this.state.M[0],
-	      height: -(subj.height * this.state.M[4])
-	    };
-	  },
-	  render: function() {
-	    var rect_0;
-	    c("@state.M", this.state.M);
-	    rect_0 = this.main_rect();
-	    return svg({
-	      width: '100%',
-	      height: '100%'
-	    }, rect({
-	      x: rect_0.origin[0],
-	      y: rect_0.origin[1],
-	      width: rect_0.width,
-	      height: rect_0.height,
-	      fill: 'white',
-	      onClick: this.capture_text,
-	      onBlur: this.cancel_capture
-	    }), text({
-	      fill: 'red',
-	      x: rect_0.origin[0],
-	      y: rect_0.origin[1] + rect_0.height * .8,
-	      fontSize: rect_0.height * .7,
-	      onClick: this.capture_text,
-	      onBlur: this.cancel_capture
-	    }, this.state.input_text));
 	  }
 	});
 

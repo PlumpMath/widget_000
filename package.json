@@ -1,0 +1,16 @@
+{
+    "name": "widget",
+    "version": "0.0.1",
+    "dependencies": {
+        "coffee-script": "latest",
+        "coffee-loader": "latest",
+        "gl-matrix": "latest",
+        "ioredis": "latest",
+        "lodash": "latest",
+        "react-ajax": "latest",
+        "shortid": "latest"
+    },
+    "devDependencies": {
+        "chai": "latest"
+    }
+}

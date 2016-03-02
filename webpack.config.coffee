@@ -12,7 +12,7 @@ module.exports = config =
     cache: true
     debug: true
     entry:
-        app: ['./client_src/widget.coffee']
+        app: ['./client_src/container.coffee']
     stats:
         colors: on
         reasons: on

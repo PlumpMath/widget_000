@@ -51,19 +51,15 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, main, mat3, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, root, rr, shortid, span, stop, superagent, svg, text, ul, vec2, vec3, widget;
+	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, main, mat3, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, root, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
 
-	ref = __webpack_require__(2)(), superagent = ref.superagent, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys;
+	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
 
 	root = document.getElementById('root');
 
 	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse;
 
-	mat3 = gl_mat.mat3;
-
-	vec3 = gl_mat.vec3;
-
-	vec2 = gl_mat.vec2;
+	widget = __webpack_require__(202);
 
 	main = rr({
 	  componentWillUnmount: function() {
@@ -170,187 +166,6 @@
 	  }
 	});
 
-	widget = rr({
-	  componentDidMount: function() {
-	    return c('superagent', superagent);
-	  },
-	  componentWillReceiveProps: function(next_props) {
-	    return this.setState({
-	      M: next_props.M
-	    });
-	  },
-	  getInitialState: function() {
-	    return {
-	      M: this.props.M
-	    };
-	  },
-	  rect_t: function(subj_rect) {
-	    var height, width, x, y;
-	    width = subj_rect.width, height = subj_rect.height, x = subj_rect.x, y = subj_rect.y;
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [x, y], this.state.M),
-	      width: width * this.state.M[0],
-	      height: -(height * this.state.M[4])
-	    };
-	  },
-	  area_rect: function() {
-	    var subj;
-	    subj = {
-	      width: 200,
-	      height: 48.39,
-	      x: -100,
-	      y: 24.195
-	    };
-	    return this.rect_t(subj);
-	  },
-	  top_yellow_bar_rect: function() {
-	    var subj;
-	    subj = {
-	      width: 200,
-	      height: 2.89,
-	      x: -100,
-	      y: 23.368
-	    };
-	    return this.rect_t(subj);
-	  },
-	  reviews_rect: function() {
-	    var subj;
-	    subj = {
-	      width: 68.87,
-	      height: 44.467,
-	      x: 31.13,
-	      y: 20.47215
-	    };
-	    return this.rect_t(subj);
-	  },
-	  reviews_scroller: function() {
-	    var subj;
-	    subj = {
-	      width: 68.87,
-	      height: 35.16,
-	      x: 31.13,
-	      y: 11.168
-	    };
-	    return this.rect_t(subj);
-	  },
-	  review_blurb_area: function(pos) {
-	    var subj, y_pos;
-	    y_pos = function(pos) {
-	      return 11.168 - (pos * 11.719);
-	    };
-	    subj = {
-	      width: 68.7,
-	      height: 11.719,
-	      x: 31.13,
-	      y: y_pos(pos)
-	    };
-	    return this.rect_t(subj);
-	  },
-	  reviews_title: function() {
-	    var subj;
-	    subj = {
-	      font_size: 5.377,
-	      text_width: 25.439,
-	      x: 37.33,
-	      y: 14.7
-	    };
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
-	      text_width: subj.text_width * this.state.M[0],
-	      font_size: -(subj.font_size * this.state.M[4])
-	    };
-	  },
-	  reviews_number: function() {
-	    var subj;
-	    subj = {
-	      text_width: 8.89,
-	      font_size: 2.89,
-	      x: 65.45,
-	      y: 14.7
-	    };
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
-	      text_width: subj.text_width * this.state.M[0],
-	      font_size: -(subj.font_size * this.state.M[4])
-	    };
-	  },
-	  render: function() {
-	    var area_rect, i, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, temp_color, top_yellow_bar_rect;
-	    area_rect = this.area_rect();
-	    top_yellow_bar_rect = this.top_yellow_bar_rect();
-	    reviews_rect = this.reviews_rect();
-	    reviews_title = this.reviews_title();
-	    reviews_number = this.reviews_number();
-	    reviews_scroller = this.reviews_scroller();
-	    return svg({
-	      width: '100%',
-	      height: '100%'
-	    }, rect({
-	      x: area_rect.origin[0],
-	      y: area_rect.origin[1],
-	      width: area_rect.width,
-	      height: area_rect.height,
-	      fill: '#F6F6F6'
-	    }), rect({
-	      x: top_yellow_bar_rect.origin[0],
-	      y: top_yellow_bar_rect.origin[1],
-	      width: top_yellow_bar_rect.width,
-	      height: top_yellow_bar_rect.height,
-	      fill: '#EFBD00'
-	    }), rect({
-	      x: reviews_rect.origin[0],
-	      y: reviews_rect.origin[1],
-	      width: reviews_rect.width,
-	      height: reviews_rect.height,
-	      fill: 'yellow'
-	    }), rect({
-	      x: reviews_scroller.origin[0],
-	      y: reviews_scroller.origin[1],
-	      width: reviews_scroller.width,
-	      height: reviews_scroller.height,
-	      fill: 'lightblue'
-	    }), text({
-	      x: reviews_title.origin[0],
-	      y: reviews_title.origin[1],
-	      'font-size': reviews_title.font_size,
-	      'font-family': 'Helvetica',
-	      fill: '#7D7D7D',
-	      textLength: reviews_title.text_width
-	    }, "Reviews"), text({
-	      x: reviews_number.origin[0],
-	      y: reviews_number.origin[1],
-	      'font-size': reviews_number.font_size,
-	      'font-family': 'Verdana',
-	      fill: '#666666',
-	      textLength: reviews_number.text_width
-	    }, "(+388)"), (function() {
-	      var j, results;
-	      results = [];
-	      for (i = j = 0; j <= 2; i = ++j) {
-	        review_blurb_area = this.review_blurb_area(i);
-	        temp_color = (function() {
-	          switch (i) {
-	            case 0:
-	              return 'red';
-	            case 1:
-	              return 'blue';
-	            case 2:
-	              return 'lightgreen';
-	          }
-	        })();
-	        results.push(rect({
-	          x: review_blurb_area.origin[0],
-	          y: review_blurb_area.origin[1],
-	          width: review_blurb_area.width,
-	          height: review_blurb_area.height,
-	          fill: temp_color
-	        }));
-	      }
-	      return results;
-	    }).call(this));
-	  }
-	});
-
 	React_DOM.render(main(), root);
 
 
@@ -358,7 +173,7 @@
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, c, gl_mat, shortid, superagent;
+	var React, React_DOM, _, c, gl_mat, mat3, request, shortid, vec2, vec3;
 
 	c = function() {
 	  return console.log.apply(console, arguments);
@@ -374,11 +189,20 @@
 
 	gl_mat = __webpack_require__(185);
 
-	superagent = __webpack_require__(195);
+	request = __webpack_require__(195);
+
+	mat3 = gl_mat.mat3;
+
+	vec3 = gl_mat.vec3;
+
+	vec2 = gl_mat.vec2;
 
 	module.exports = function() {
 	  return {
-	    superagent: superagent,
+	    mat3: mat3,
+	    vec3: vec3,
+	    vec2: vec2,
+	    request: request,
 	    gl_mat: gl_mat,
 	    _: _,
 	    React: React,
@@ -43633,6 +43457,211 @@
 	}
 
 	module.exports = request;
+
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
+
+	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
+
+	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse;
+
+	module.exports = widget = rr({
+	  componentDidMount: function() {
+	    return request.get("http://api.erated.co/v1/users/bf2ec2098ca8bc146be3eb3fcaab5b53b69075cf").query({
+	      partner: '12341234'
+	    }).query({
+	      mode: 'marketplaces'
+	    }).end((function(_this) {
+	      return function(err, res) {
+	        var data;
+	        data = JSON.parse(res.text).data;
+	        c('data', data);
+	        return _this.setState({
+	          data: data
+	        });
+	      };
+	    })(this));
+	  },
+	  componentWillReceiveProps: function(next_props) {
+	    return this.setState({
+	      M: next_props.M
+	    });
+	  },
+	  getInitialState: function() {
+	    return {
+	      M: this.props.M
+	    };
+	  },
+	  rect_t: function(subj_rect) {
+	    var height, width, x, y;
+	    width = subj_rect.width, height = subj_rect.height, x = subj_rect.x, y = subj_rect.y;
+	    return {
+	      origin: vec2.transformMat3(vec2.create(), [x, y], this.state.M),
+	      width: width * this.state.M[0],
+	      height: -(height * this.state.M[4])
+	    };
+	  },
+	  area_rect: function() {
+	    var subj;
+	    subj = {
+	      width: 200,
+	      height: 48.39,
+	      x: -100,
+	      y: 24.195
+	    };
+	    return this.rect_t(subj);
+	  },
+	  top_yellow_bar_rect: function() {
+	    var subj;
+	    subj = {
+	      width: 200,
+	      height: 2.89,
+	      x: -100,
+	      y: 23.368
+	    };
+	    return this.rect_t(subj);
+	  },
+	  reviews_rect: function() {
+	    var subj;
+	    subj = {
+	      width: 68.87,
+	      height: 44.467,
+	      x: 31.13,
+	      y: 20.47215
+	    };
+	    return this.rect_t(subj);
+	  },
+	  reviews_scroller: function() {
+	    var subj;
+	    subj = {
+	      width: 68.87,
+	      height: 35.16,
+	      x: 31.13,
+	      y: 11.168
+	    };
+	    return this.rect_t(subj);
+	  },
+	  review_blurb_area: function(pos) {
+	    var subj, y_pos;
+	    y_pos = function(pos) {
+	      return 11.168 - (pos * 11.719);
+	    };
+	    subj = {
+	      width: 68.7,
+	      height: 11.719,
+	      x: 31.13,
+	      y: y_pos(pos)
+	    };
+	    return this.rect_t(subj);
+	  },
+	  reviews_title: function() {
+	    var subj;
+	    subj = {
+	      font_size: 5.377,
+	      text_width: 25.439,
+	      x: 37.33,
+	      y: 14.7
+	    };
+	    return {
+	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
+	      text_width: subj.text_width * this.state.M[0],
+	      font_size: -(subj.font_size * this.state.M[4])
+	    };
+	  },
+	  reviews_number: function() {
+	    var subj;
+	    subj = {
+	      text_width: 8.89,
+	      font_size: 2.89,
+	      x: 65.45,
+	      y: 14.7
+	    };
+	    return {
+	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
+	      text_width: subj.text_width * this.state.M[0],
+	      font_size: -(subj.font_size * this.state.M[4])
+	    };
+	  },
+	  render: function() {
+	    var area_rect, i, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, temp_color, top_yellow_bar_rect;
+	    area_rect = this.area_rect();
+	    top_yellow_bar_rect = this.top_yellow_bar_rect();
+	    reviews_rect = this.reviews_rect();
+	    reviews_title = this.reviews_title();
+	    reviews_number = this.reviews_number();
+	    reviews_scroller = this.reviews_scroller();
+	    return svg({
+	      width: '100%',
+	      height: '100%'
+	    }, rect({
+	      x: area_rect.origin[0],
+	      y: area_rect.origin[1],
+	      width: area_rect.width,
+	      height: area_rect.height,
+	      fill: '#F6F6F6'
+	    }), rect({
+	      x: top_yellow_bar_rect.origin[0],
+	      y: top_yellow_bar_rect.origin[1],
+	      width: top_yellow_bar_rect.width,
+	      height: top_yellow_bar_rect.height,
+	      fill: '#EFBD00'
+	    }), rect({
+	      x: reviews_rect.origin[0],
+	      y: reviews_rect.origin[1],
+	      width: reviews_rect.width,
+	      height: reviews_rect.height,
+	      fill: 'yellow'
+	    }), rect({
+	      x: reviews_scroller.origin[0],
+	      y: reviews_scroller.origin[1],
+	      width: reviews_scroller.width,
+	      height: reviews_scroller.height,
+	      fill: 'lightblue'
+	    }), text({
+	      x: reviews_title.origin[0],
+	      y: reviews_title.origin[1],
+	      'font-size': reviews_title.font_size,
+	      'font-family': 'Helvetica',
+	      fill: '#7D7D7D',
+	      textLength: reviews_title.text_width
+	    }, "Reviews"), text({
+	      x: reviews_number.origin[0],
+	      y: reviews_number.origin[1],
+	      'font-size': reviews_number.font_size,
+	      'font-family': 'Verdana',
+	      fill: '#666666',
+	      textLength: reviews_number.text_width
+	    }, "(+388)"), (function() {
+	      var j, results;
+	      results = [];
+	      for (i = j = 0; j <= 2; i = ++j) {
+	        review_blurb_area = this.review_blurb_area(i);
+	        temp_color = (function() {
+	          switch (i) {
+	            case 0:
+	              return 'red';
+	            case 1:
+	              return 'blue';
+	            case 2:
+	              return 'lightgreen';
+	          }
+	        })();
+	        results.push(rect({
+	          x: review_blurb_area.origin[0],
+	          y: review_blurb_area.origin[1],
+	          width: review_blurb_area.width,
+	          height: review_blurb_area.height,
+	          fill: temp_color
+	        }));
+	      }
+	      return results;
+	    }).call(this));
+	  }
+	});
 
 
 /***/ }

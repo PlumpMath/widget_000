@@ -43505,6 +43505,15 @@
 	      height: -(height * this.state.M[4])
 	    };
 	  },
+	  text_t: function(subj_text) {
+	    var font_size, text_width, x, y;
+	    font_size = subj_text.font_size, text_width = subj_text.text_width, x = subj_text.x, y = subj_text.y;
+	    return {
+	      origin: vec2.transformMat3(vec2.create(), [x, y], this.state.M),
+	      text_width: text_width * this.state.M[0],
+	      font_size: -(font_size * this.state.M[4])
+	    };
+	  },
 	  area_rect: function() {
 	    var subj;
 	    subj = {
@@ -43558,6 +43567,12 @@
 	    };
 	    return this.rect_t(subj);
 	  },
+	  review_blurb_text: function(pos) {
+	    var y_pos;
+	    return y_pos = function(pos) {
+	      return 10 - (pos * 11.719);
+	    };
+	  },
 	  reviews_title: function() {
 	    var subj;
 	    subj = {
@@ -43566,11 +43581,7 @@
 	      x: 37.33,
 	      y: 14.7
 	    };
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
-	      text_width: subj.text_width * this.state.M[0],
-	      font_size: -(subj.font_size * this.state.M[4])
-	    };
+	    return this.text_t(subj);
 	  },
 	  reviews_number: function() {
 	    var subj;
@@ -43580,11 +43591,7 @@
 	      x: 65.45,
 	      y: 14.7
 	    };
-	    return {
-	      origin: vec2.transformMat3(vec2.create(), [subj.x, subj.y], this.state.M),
-	      text_width: subj.text_width * this.state.M[0],
-	      font_size: -(subj.font_size * this.state.M[4])
-	    };
+	    return this.text_t(subj);
 	  },
 	  render: function() {
 	    var area_rect, i, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, temp_color, top_yellow_bar_rect;

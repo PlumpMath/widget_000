@@ -30,6 +30,13 @@ module.exports = widget = rr
         width: width * @state.M[0]
         height: -(height * @state.M[4])
 
+    text_t: (subj_text)->
+        {font_size, text_width, x, y} = subj_text
+        origin: vec2.transformMat3 vec2.create(), [x, y], @state.M
+        text_width: text_width * @state.M[0]
+        font_size: -(font_size * @state.M[4])
+
+
     area_rect: ->
         subj =
             width: 200
@@ -73,15 +80,19 @@ module.exports = widget = rr
             y: y_pos(pos)
         @rect_t subj
 
+    review_blurb_text: (pos)->
+        y_pos = (pos)->
+            return 10 - (pos * 11.719)
+        # subj =
+
+
     reviews_title: ->
         subj =
             font_size: 5.377
             text_width: 25.439
             x: 37.33
             y: 14.7
-        origin: vec2.transformMat3 vec2.create(), [subj.x, subj.y], @state.M
-        text_width: subj.text_width * @state.M[0]
-        font_size: -(subj.font_size * @state.M[4])
+        @text_t subj
 
     reviews_number: ->
         subj =
@@ -89,9 +100,7 @@ module.exports = widget = rr
             font_size: 2.89
             x: 65.45
             y: 14.7
-        origin: vec2.transformMat3 vec2.create(), [subj.x, subj.y], @state.M
-        text_width: subj.text_width * @state.M[0]
-        font_size: -(subj.font_size * @state.M[4])
+        @text_t subj
 
     render: ->
 

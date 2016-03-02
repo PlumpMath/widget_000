@@ -76,12 +76,19 @@ module.exports = widget = rr
             y: 20.47215
         @rect_t subj
 
-    # portrait_photo_circle: ->
-    #     subj =
-    #         x: -90.693
-    #         y: 11.7855
-    #         r: 7.44
-    #     @circle_t subj
+    portrait_photo_border: ->
+        subj =
+            x: -90.693
+            y: 11.7855
+            r: 7.44
+        @circle_t subj
+
+    portrait_ring_circle: ->
+        subj =
+            x: -78.84
+            y: 11.7855
+            r: 7.3
+        @circle_t subj
 
     portrait_photo_square: ->
         subj =
@@ -90,6 +97,9 @@ module.exports = widget = rr
             width: 14.88
             height: 14.88
         @rect_t subj
+
+
+
 
 
     reviews_rect: ->
@@ -207,6 +217,22 @@ module.exports = widget = rr
             y: 14.7
         @text_t subj
 
+    positivity_count_text: ->
+        subj =
+            font_size: 3.309
+            text_width: 11.99
+            x: -84.12
+            y: 12.48
+        @text_t subj
+
+    positive_text: ->
+        subj =
+            font_size: 3.309
+            text_width: 11.99
+            x: -84.12
+            y: 9.09
+        @text_t subj
+
     reviews_number: ->
         subj =
             text_width: 8.89
@@ -234,26 +260,30 @@ module.exports = widget = rr
         transactions_assess_area = @transactions_assess_area()
         overview_main_area = @overview_main_area()
         portrait_photo_square = @portrait_photo_square()
+        portrait_photo_border = @portrait_photo_border()
+        portrait_ring_circle = @portrait_ring_circle()
+        positivity_count_text = @positivity_count_text()
+        positive_text = @positive_text()
 
         svg
             width: '100%'
             height: '100%'
         ,
-            # defs
-            #     pattern
-            #         id: 'pimg'
-            #
-            #         width: 10
-            #         height: 10
-            #         patternUnits: 'userSpaceOnUse'
-            #         ,
-            #             image
-            #                 x: 0
-            #                 y: 0
-            #                 width: 100
-            #                 height: 100
-            #                 # xlinkHref: 'file:../assets/mwdJ3x17.jpg'
-            #                 xlinkHref: 'file:../assets/dhgatelogo.png'
+            defs
+                pattern
+                    id: 'pimg'
+                    #
+                    # width: 10
+                    # height: 10
+                    # patternUnits: 'userSpaceOnUse'
+                    ,
+                        image
+                        #     x: 0
+                        #     y: 0
+                        #     width: 100
+                        #     height: 100
+                            # xlinkHref: 'file:../assets/mwdJ3x17.jpg'
+                            xlinkHref: 'file:../assets/dhgatelogo.png'
 
 # <svg width="700" height="660">
 #   <defs>
@@ -290,12 +320,45 @@ module.exports = widget = rr
             #     fill: 'black'
             #     fill: "url(#pimg)"
             #     stroke: 'white'
+            circle
+                cx: portrait_ring_circle.origin[0]
+                cy: portrait_ring_circle.origin[1]
+                r: portrait_ring_circle.r
+                # fillOpacity: 0
+                fill: 'url(#ping)'
+                stroke: 'orange'
+            text
+                x: positivity_count_text.origin[0]
+                y: positivity_count_text.origin[1]
+                'font-size': positivity_count_text.font_size
+                textLength: positivity_count_text.text_width
+                fill: 'orange'
+                ,
+                    "99.6%"
+            text
+                x: positive_text.origin[0]
+                y: positive_text.origin[1]
+                'font-size': positive_text.font_size
+                textLength: positive_text.text_width
+                fill: 'grey'
+                ,
+                    "Positive"
             image
                 x: portrait_photo_square.origin[0]
                 y: portrait_photo_square.origin[1]
                 width: portrait_photo_square.width
                 height: portrait_photo_square.height
                 xlinkHref: 'file:../assets/portrait.png'
+            # circle
+            #     cx: portrait_photo_border.origin[0]
+            #     cy: portrait_photo_border.origin[1]
+            #     r: portrait_photo_border.r
+            #     stroke: 'white'
+            #     fillOpacity: 0
+
+
+
+
 
             rect
                 x: tabs_area.origin[0]
@@ -393,7 +456,7 @@ module.exports = widget = rr
             for i in [0 .. 2]
                 review_blurb_area = @review_blurb_area(i)
                 temp_color = switch i
-                    when 0 then 'red'
+                    when 0 then 'green'
                     when 1 then 'blue'
                     when 2 then 'lightgreen'
 

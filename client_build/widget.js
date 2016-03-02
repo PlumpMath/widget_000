@@ -43547,6 +43547,24 @@
 	    };
 	    return this.rect_t(subj);
 	  },
+	  portrait_photo_border: function() {
+	    var subj;
+	    subj = {
+	      x: -90.693,
+	      y: 11.7855,
+	      r: 7.44
+	    };
+	    return this.circle_t(subj);
+	  },
+	  portrait_ring_circle: function() {
+	    var subj;
+	    subj = {
+	      x: -78.84,
+	      y: 11.7855,
+	      r: 7.3
+	    };
+	    return this.circle_t(subj);
+	  },
 	  portrait_photo_square: function() {
 	    var subj;
 	    subj = {
@@ -43700,6 +43718,26 @@
 	    };
 	    return this.text_t(subj);
 	  },
+	  positivity_count_text: function() {
+	    var subj;
+	    subj = {
+	      font_size: 3.309,
+	      text_width: 11.99,
+	      x: -84.12,
+	      y: 12.48
+	    };
+	    return this.text_t(subj);
+	  },
+	  positive_text: function() {
+	    var subj;
+	    subj = {
+	      font_size: 3.309,
+	      text_width: 11.99,
+	      x: -84.12,
+	      y: 9.09
+	    };
+	    return this.text_t(subj);
+	  },
 	  reviews_number: function() {
 	    var subj;
 	    subj = {
@@ -43711,7 +43749,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, i, overview_main_area, portrait_photo_square, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_yellow_bar_rect, transactions_assess_area;
+	    var area_rect, i, overview_main_area, portrait_photo_border, portrait_photo_square, portrait_ring_circle, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_yellow_bar_rect, transactions_assess_area;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43729,10 +43767,18 @@
 	    transactions_assess_area = this.transactions_assess_area();
 	    overview_main_area = this.overview_main_area();
 	    portrait_photo_square = this.portrait_photo_square();
+	    portrait_photo_border = this.portrait_photo_border();
+	    portrait_ring_circle = this.portrait_ring_circle();
+	    positivity_count_text = this.positivity_count_text();
+	    positive_text = this.positive_text();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
-	    }, rect({
+	    }, defs, pattern({
+	      id: 'pimg'
+	    }, image({
+	      xlinkHref: 'file:../assets/dhgatelogo.png'
+	    })), rect({
 	      x: area_rect.origin[0],
 	      y: area_rect.origin[1],
 	      width: area_rect.width,
@@ -43750,7 +43796,25 @@
 	      width: overview_main_area.width,
 	      height: overview_main_area.height,
 	      fill: 'blue'
-	    }), image({
+	    }), circle({
+	      cx: portrait_ring_circle.origin[0],
+	      cy: portrait_ring_circle.origin[1],
+	      r: portrait_ring_circle.r,
+	      fill: 'url(#ping)',
+	      stroke: 'orange'
+	    }), text({
+	      x: positivity_count_text.origin[0],
+	      y: positivity_count_text.origin[1],
+	      'font-size': positivity_count_text.font_size,
+	      textLength: positivity_count_text.text_width,
+	      fill: 'orange'
+	    }, "99.6%"), text({
+	      x: positive_text.origin[0],
+	      y: positive_text.origin[1],
+	      'font-size': positive_text.font_size,
+	      textLength: positive_text.text_width,
+	      fill: 'grey'
+	    }, "Positive"), image({
 	      x: portrait_photo_square.origin[0],
 	      y: portrait_photo_square.origin[1],
 	      width: portrait_photo_square.width,
@@ -43849,7 +43913,7 @@
 	        temp_color = (function() {
 	          switch (i) {
 	            case 0:
-	              return 'red';
+	              return 'green';
 	            case 1:
 	              return 'blue';
 	            case 2:

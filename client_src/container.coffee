@@ -4,7 +4,7 @@
 
 root = document.getElementById 'root'
 
-{p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse} = React.DOM
+{p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse, img} = React.DOM
 
 widget = require('./widget.coffee')
 
@@ -114,7 +114,11 @@ main = rr
                     height: '100%'
                     display: 'block'
                 ,
+
                     widget
                         M: M
-
+                # img
+                #     src: '../assets/dhgicon.png'
+                #     width: 100
+                #     height: 100
 React_DOM.render main(), root

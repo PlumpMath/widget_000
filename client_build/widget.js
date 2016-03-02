@@ -51,13 +51,13 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, main, mat3, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, root, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
+	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, img, input, keys, li, line, linearGradient, main, mat3, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, root, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
 
 	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
 
 	root = document.getElementById('root');
 
-	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse;
+	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse, img = ref1.img;
 
 	widget = __webpack_require__(202);
 
@@ -43463,28 +43463,21 @@
 /* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
+	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, mock, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
 
 	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
 
 	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse;
 
+	c('image', image);
+
+	mock = __webpack_require__(203);
+
 	module.exports = widget = rr({
 	  componentDidMount: function() {
-	    return request.get("http://api.erated.co/v1/users/bf2ec2098ca8bc146be3eb3fcaab5b53b69075cf").query({
-	      partner: '12341234'
-	    }).query({
-	      mode: 'marketplaces'
-	    }).end((function(_this) {
-	      return function(err, res) {
-	        var data;
-	        data = JSON.parse(res.text).data;
-	        c('data', data);
-	        return _this.setState({
-	          data: data
-	        });
-	      };
-	    })(this));
+	    var obj;
+	    obj = JSON.parse(mock);
+	    return c('obj', obj);
 	  },
 	  componentWillReceiveProps: function(next_props) {
 	    return this.setState({
@@ -43554,6 +43547,66 @@
 	    };
 	    return this.rect_t(subj);
 	  },
+	  tab_one: function() {
+	    var subj;
+	    subj = {
+	      width: 20.687,
+	      height: 9.72,
+	      x: -34.64,
+	      y: 20.47215
+	    };
+	    return this.rect_t(subj);
+	  },
+	  tab_one_image: function() {
+	    var subj;
+	    subj = {
+	      x: -34,
+	      y: 20,
+	      width: 18,
+	      height: 10
+	    };
+	    return this.rect_t(subj);
+	  },
+	  tab_two: function() {
+	    var subj;
+	    subj = {
+	      width: 24.405,
+	      height: 9.72,
+	      x: -13.953,
+	      y: 20.47215
+	    };
+	    return this.rect_t(subj);
+	  },
+	  tab_two_image: function() {
+	    var subj;
+	    subj = {
+	      x: -13,
+	      y: 20,
+	      width: 20,
+	      height: 8
+	    };
+	    return this.rect_t(subj);
+	  },
+	  tab_three: function() {
+	    var subj;
+	    subj = {
+	      width: 20.687,
+	      height: 9.72,
+	      x: 10.452,
+	      y: 20.47215
+	    };
+	    return this.rect_t(subj);
+	  },
+	  tabs_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 35.16,
+	      x: -34.64,
+	      y: 11.168
+	    };
+	    return this.rect_t(subj);
+	  },
 	  review_blurb_area: function(pos) {
 	    var subj, y_pos;
 	    y_pos = function(pos) {
@@ -43568,9 +43621,13 @@
 	    return this.rect_t(subj);
 	  },
 	  review_blurb_text: function(pos) {
-	    var y_pos;
-	    return y_pos = function(pos) {
+	    var subj, y_pos;
+	    y_pos = function(pos) {
 	      return 10 - (pos * 11.719);
+	    };
+	    return subj = {
+	      x: 10,
+	      y: y_pos(pos)
 	    };
 	  },
 	  reviews_title: function() {
@@ -43594,13 +43651,19 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, i, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, temp_color, top_yellow_bar_rect;
+	    var area_rect, i, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, tab_one, tab_one_image, tab_three, tab_two, tab_two_image, tabs_area, temp_color, top_yellow_bar_rect;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
 	    reviews_title = this.reviews_title();
 	    reviews_number = this.reviews_number();
 	    reviews_scroller = this.reviews_scroller();
+	    tabs_area = this.tabs_area();
+	    tab_one = this.tab_one();
+	    tab_two = this.tab_two();
+	    tab_three = this.tab_three();
+	    tab_one_image = this.tab_one_image();
+	    tab_two_image = this.tab_two_image();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -43616,6 +43679,45 @@
 	      width: top_yellow_bar_rect.width,
 	      height: top_yellow_bar_rect.height,
 	      fill: '#EFBD00'
+	    }), rect({
+	      x: tabs_area.origin[0],
+	      y: tabs_area.origin[1],
+	      width: tabs_area.width,
+	      height: tabs_area.height,
+	      fill: 'purple'
+	    }), rect({
+	      x: tab_one.origin[0],
+	      y: tab_one.origin[1],
+	      width: tab_one.width,
+	      height: tab_one.height,
+	      fill: 'orange'
+	    }), image({
+	      x: tab_one_image.origin[0],
+	      y: tab_one_image.origin[1],
+	      width: tab_one_image.width,
+	      height: tab_one_image.height,
+	      xlinkHref: 'file:../assets/dhgatelogo.png'
+	    }), rect({
+	      x: tab_two.origin[0],
+	      y: tab_two.origin[1],
+	      width: tab_two.width,
+	      height: tab_two.height,
+	      fill: 'grey',
+	      onClick: function() {
+	        return c('here!!!!!!!!!!!!!!!!!!!');
+	      }
+	    }), image({
+	      x: tab_two_image.origin[0],
+	      y: tab_two_image.origin[1],
+	      width: tab_two_image.width,
+	      height: tab_two_image.height,
+	      xlinkHref: 'file:../assets/ebaycolor.png'
+	    }), rect({
+	      x: tab_three.origin[0],
+	      y: tab_three.origin[1],
+	      width: tab_three.width,
+	      height: tab_three.height,
+	      fill: 'green'
 	    }), rect({
 	      x: reviews_rect.origin[0],
 	      y: reviews_rect.origin[1],
@@ -43669,6 +43771,13 @@
 	    }).call(this));
 	  }
 	});
+
+
+/***/ },
+/* 203 */
+/***/ function(module, exports) {
+
+	module.exports = "{\"data\":{\"uid\":7412,\"first_name\":\"Tracy\",\"last_name\":\"Yamamoto\",\"display_name\":\"Tracy Yamamoto\",\"location\":\"San Francisco, California\",\"work\":\"\",\"profile_image_link\":\"http://graph.facebook.com/736911634/picture\",\"social_information\":{\"facebook\":{\"connections\":250,\"positions\":[],\"education\":[],\"languages\":[]},\"facebook_pages\":{},\"twitter\":{}},\"widget_settings\":{\"use_facebook_pages\":false,\"show_work\":true,\"show_location\":true,\"location\":null,\"work\":null,\"display_name\":null,\"profile_image\":null,\"show_social_icons\":null},\"total_rating\":99.8201438848921,\"number_of_ratings\":556,\"number_of_reviews\":556,\"relevant_reputation\":[{\"name\":\"etsy\",\"logo\":null,\"reviews\":[{\"review_content\":\"Having fun wearing these to the law office! Just as pictured, great quality.\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"Perfect gift. Came in a nice box too.\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"My husband loves his cuff links!  Quality is great with fast shipping!  Thank you!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"Very cool cufflinks for a lawyer!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"My dad absolutely loves his new tie tack, it personifies my three budgies beautifully.\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"Beautiful quality and I couldn't be happier with my purchase!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"So well made and nicely packaged!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"I love these!  I can't wait to give to my fiance on Valentine's Day.  He will wear them at our wedding!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"I got this for my husband for Valentine's Day and couldn't wait to give it to him; he loves it!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"Great customer service. Super fast shipping!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"looks great! came in a nice box\\n\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"positive\"},{\"review_content\":\"Great quality although a bit larger than I had expected!\",\"marketplace_name\":\"etsy\",\"reviewed_as_seller\":1,\"review_type\":\"neutral\"}],\"total_reviews\":552,\"score\":100.0},{\"name\":\"supermarket\",\"logo\":null,\"reviews\":[{\"review_content\":\"Thanks for your interest.\",\"marketplace_name\":\"supermarket\",\"reviewed_as_seller\":null,\"review_type\":\"positive\"},{\"review_content\":\"A pleasure to do business with. Thanks!\",\"marketplace_name\":\"supermarket\",\"reviewed_as_seller\":null,\"review_type\":\"negative\"},{\"review_content\":\"Excellent Buyer!!! Great Communication!! Fast, Easy Transaction!! Thanks again!!\",\"marketplace_name\":\"supermarket\",\"reviewed_as_seller\":null,\"review_type\":\"positive\"},{\"review_content\":\"Super Fast Payment! Smooth Transaction! Great eBayer! A Seller's Dream!!!\",\"marketplace_name\":\"supermarket\",\"reviewed_as_seller\":null,\"review_type\":\"positive\"}],\"total_reviews\":4,\"score\":75.0,\"characteristics\":[]}],\"services\":[{\"service\":{\"provider\":\"relendo\",\"expired\":false}},{\"service\":{\"provider\":\"facebook\",\"expired\":true}},{\"service\":{\"provider\":\"etsy\",\"expired\":false}},{\"service\":{\"provider\":\"supermarket\",\"expired\":false}}],\"platform_widget_settings\":{\"localisation_override\":{\"see_my_reputation\":\"Buyer HEADER\",\"increase_my_reputation\":\"SELLER HEADER\"}}},\"success\":true,\"update_reviews\":true}";
 
 
 /***/ }

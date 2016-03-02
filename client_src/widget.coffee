@@ -2,20 +2,29 @@
 
 {p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse} = React.DOM
 
+c 'image', image
 
+mock = require '../mock/mock_000.coffee'
 module.exports = widget = rr
 
     componentDidMount: ->
-        request
-        .get "
-        http://api.erated.co/v1/users/bf2ec2098ca8bc146be3eb3fcaab5b53b69075cf"
-        .query {partner: '12341234'}
-        .query {mode: 'marketplaces'}
-        .end (err, res)=>
-            data = JSON.parse(res.text).data
-            c 'data', data
-            @setState
-                data: data
+        # c 'hi'
+        obj = JSON.parse mock
+        c 'obj', obj
+
+        # request
+        # .get "
+        # http://api.erated.co/v1/users/bf2ec2098ca8bc146be3eb3fcaab5b53b69075cf"
+        # .query {partner: '12341234'}
+        # .query {mode: 'marketplaces'}
+        # .end (err, res)=>
+        #     data = JSON.parse(res.text).data
+        #     # c 'data', data
+        #     c 'data.relevant_reputation', data.relevant_reputation
+
+            # @setState
+            #     data: data
+            #     relevant_reputation: data.relevant_reputation
 
     componentWillReceiveProps: (next_props)->
         @setState
@@ -69,6 +78,54 @@ module.exports = widget = rr
             y: 11.168
         @rect_t subj
 
+    tab_one: ->
+        subj =
+            width: 20.687
+            height: 9.72
+            x: -34.64
+            y: 20.47215
+        @rect_t subj
+
+    tab_one_image: ->
+        subj =
+            x: -34
+            y: 20
+            width: 18
+            height: 10
+        @rect_t subj
+
+    tab_two: ->
+        subj =
+            width: 24.405
+            height: 9.72
+            x: -13.953
+            y: 20.47215
+        @rect_t subj
+
+    tab_two_image: ->
+        subj =
+            x: -13
+            y: 20
+            width: 20
+            height: 8
+        @rect_t subj
+
+    tab_three: ->
+        subj =
+            width: 20.687
+            height: 9.72
+            x: 10.452
+            y: 20.47215
+        @rect_t subj
+
+    tabs_area: ->
+        subj =
+            width: 65.77
+            height: 35.16
+            x: -34.64
+            y: 11.168
+        @rect_t subj
+
     review_blurb_area: (pos) ->
         # pos can be 0 to 2 (there are 3 positions available)
         y_pos = (pos)->
@@ -83,7 +140,9 @@ module.exports = widget = rr
     review_blurb_text: (pos)->
         y_pos = (pos)->
             return 10 - (pos * 11.719)
-        # subj =
+        subj =
+            x: 10
+            y: y_pos(pos)
 
 
     reviews_title: ->
@@ -102,6 +161,8 @@ module.exports = widget = rr
             y: 14.7
         @text_t subj
 
+
+
     render: ->
 
         area_rect = @area_rect()
@@ -110,6 +171,10 @@ module.exports = widget = rr
         reviews_title = @reviews_title()
         reviews_number = @reviews_number()
         reviews_scroller = @reviews_scroller()
+        tabs_area = @tabs_area()
+        tab_one = @tab_one() ; tab_two = @tab_two() ; tab_three = @tab_three()
+        tab_one_image = @tab_one_image()
+        tab_two_image = @tab_two_image()
 
         svg
             width: '100%'
@@ -127,6 +192,45 @@ module.exports = widget = rr
                 width: top_yellow_bar_rect.width
                 height: top_yellow_bar_rect.height
                 fill: '#EFBD00'
+
+            rect
+                x: tabs_area.origin[0]
+                y: tabs_area.origin[1]
+                width: tabs_area.width
+                height: tabs_area.height
+                fill: 'purple'
+
+            rect
+                x: tab_one.origin[0]
+                y: tab_one.origin[1]
+                width: tab_one.width
+                height: tab_one.height
+                fill: 'orange'
+            image
+                x: tab_one_image.origin[0]
+                y: tab_one_image.origin[1]
+                width: tab_one_image.width
+                height: tab_one_image.height
+                xlinkHref: 'file:../assets/dhgatelogo.png'
+            rect
+                x: tab_two.origin[0]
+                y: tab_two.origin[1]
+                width: tab_two.width
+                height: tab_two.height
+                fill: 'grey'
+                onClick: -> c 'here!!!!!!!!!!!!!!!!!!!'
+            image
+                x: tab_two_image.origin[0]
+                y: tab_two_image.origin[1]
+                width: tab_two_image.width
+                height: tab_two_image.height
+                xlinkHref: 'file:../assets/ebaycolor.png'
+            rect
+                x: tab_three.origin[0]
+                y: tab_three.origin[1]
+                width: tab_three.width
+                height: tab_three.height
+                fill: 'green'
             rect
                 x: reviews_rect.origin[0]
                 y: reviews_rect.origin[1]
@@ -157,6 +261,7 @@ module.exports = widget = rr
                 textLength: reviews_number.text_width
                 ,
                 "(+388)"
+
             for i in [0 .. 2]
                 review_blurb_area = @review_blurb_area(i)
                 temp_color = switch i

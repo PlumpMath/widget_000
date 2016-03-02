@@ -1,8 +1,10 @@
 {request, _, gl_mat, r_aj, React, React_DOM, rr, c, shortid, assign, keys, mat3, vec3, vec2} = require('./boilerplate.coffee')()
 
-{p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse} = React.DOM
+{p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse, pattern} = React.DOM
 
-c 'image', image
+
+c 'pattern', pattern
+c 'filter', filter
 
 mock = require '../mock/mock_000.coffee'
 module.exports = widget = rr
@@ -45,6 +47,10 @@ module.exports = widget = rr
         text_width: text_width * @state.M[0]
         font_size: -(font_size * @state.M[4])
 
+    circle_t: (subj_circle)->
+        {x, y, r} = subj_circle
+        origin: vec2.transformMat3 vec2.create(), [x, y], @state.M
+        r: @state.M[0] * r
 
     area_rect: ->
         subj =
@@ -61,6 +67,30 @@ module.exports = widget = rr
             x: -100
             y: 23.368
         @rect_t subj
+
+    overview_main_area: ->
+        subj =
+            width: 65.77
+            height: 44.467
+            x: -100
+            y: 20.47215
+        @rect_t subj
+
+    # portrait_photo_circle: ->
+    #     subj =
+    #         x: -90.693
+    #         y: 11.7855
+    #         r: 7.44
+    #     @circle_t subj
+
+    portrait_photo_square: ->
+        subj =
+            x: -98.7
+            y: 19.8
+            width: 14.88
+            height: 14.88
+        @rect_t subj
+
 
     reviews_rect: ->
         subj =
@@ -118,12 +148,36 @@ module.exports = widget = rr
             y: 20.47215
         @rect_t subj
 
+    tab_three_image: ->
+        subj =
+            x: 11
+            y: 18
+            width: 20
+            height: 8
+        @rect_t subj
+
     tabs_area: ->
         subj =
             width: 65.77
             height: 35.16
             x: -34.64
             y: 11.168
+        @rect_t subj
+
+    stars_count_area: ->
+        subj =
+            width: 65.77
+            height: 13.23
+            x: -34.64
+            y: 10.8
+        @rect_t subj
+
+    transactions_assess_area: ->
+        subj =
+            width: 65.77
+            height: 21.929999
+            x: -34.64
+            y: -2.062
         @rect_t subj
 
     review_blurb_area: (pos) ->
@@ -175,11 +229,40 @@ module.exports = widget = rr
         tab_one = @tab_one() ; tab_two = @tab_two() ; tab_three = @tab_three()
         tab_one_image = @tab_one_image()
         tab_two_image = @tab_two_image()
+        tab_three_image = @tab_three_image()
+        stars_count_area = @stars_count_area()
+        transactions_assess_area = @transactions_assess_area()
+        overview_main_area = @overview_main_area()
+        portrait_photo_square = @portrait_photo_square()
 
         svg
             width: '100%'
             height: '100%'
         ,
+            # defs
+            #     pattern
+            #         id: 'pimg'
+            #
+            #         width: 10
+            #         height: 10
+            #         patternUnits: 'userSpaceOnUse'
+            #         ,
+            #             image
+            #                 x: 0
+            #                 y: 0
+            #                 width: 100
+            #                 height: 100
+            #                 # xlinkHref: 'file:../assets/mwdJ3x17.jpg'
+            #                 xlinkHref: 'file:../assets/dhgatelogo.png'
+
+# <svg width="700" height="660">
+#   <defs>
+#     <pattern id="image" x="0" y="0" patternUnits="userSpaceOnUse" height="1" width="1">
+#       <image x="0" y="0" xlink:href="url.png"></image>
+#     </pattern>
+#   </defs>
+#   <circle id='top' cx="180" cy="120" r="80" fill="url(#image)"/>
+# </svg>
             rect
                 x: area_rect.origin[0]
                 y: area_rect.origin[1]
@@ -192,6 +275,27 @@ module.exports = widget = rr
                 width: top_yellow_bar_rect.width
                 height: top_yellow_bar_rect.height
                 fill: '#EFBD00'
+
+            rect
+                x: overview_main_area.origin[0]
+                y: overview_main_area.origin[1]
+                width: overview_main_area.width
+                height: overview_main_area.height
+                fill: 'blue'
+
+            # circle
+            #     cx: portrait_photo_circle.origin[0]
+            #     cy: portrait_photo_circle.origin[1]
+            #     r: portrait_photo_circle.r
+            #     fill: 'black'
+            #     fill: "url(#pimg)"
+            #     stroke: 'white'
+            image
+                x: portrait_photo_square.origin[0]
+                y: portrait_photo_square.origin[1]
+                width: portrait_photo_square.width
+                height: portrait_photo_square.height
+                xlinkHref: 'file:../assets/portrait.png'
 
             rect
                 x: tabs_area.origin[0]
@@ -231,6 +335,30 @@ module.exports = widget = rr
                 width: tab_three.width
                 height: tab_three.height
                 fill: 'green'
+            image
+                x: tab_three_image.origin[0]
+                y: tab_three_image.origin[1]
+                width: tab_three_image.width
+                height: tab_three_image.height
+                xlinkHref: 'file:../assets/etsygrey.png'
+
+            rect
+                x: stars_count_area.origin[0]
+                y: stars_count_area.origin[1]
+                width: stars_count_area.width
+                height: stars_count_area.height
+                fill: 'white'
+                opacity: 0.6
+
+            rect
+                x: transactions_assess_area.origin[0]
+                y: transactions_assess_area.origin[1]
+                width: transactions_assess_area.width
+                height: transactions_assess_area.height
+                fill: 'grey'
+                opacity: 0.69
+
+
             rect
                 x: reviews_rect.origin[0]
                 y: reviews_rect.origin[1]

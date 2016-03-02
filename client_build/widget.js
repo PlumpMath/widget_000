@@ -43467,9 +43467,11 @@
 
 	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
 
-	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse;
+	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse, pattern = ref1.pattern;
 
-	c('image', image);
+	c('pattern', pattern);
+
+	c('filter', filter);
 
 	mock = __webpack_require__(203);
 
@@ -43507,6 +43509,14 @@
 	      font_size: -(font_size * this.state.M[4])
 	    };
 	  },
+	  circle_t: function(subj_circle) {
+	    var r, x, y;
+	    x = subj_circle.x, y = subj_circle.y, r = subj_circle.r;
+	    return {
+	      origin: vec2.transformMat3(vec2.create(), [x, y], this.state.M),
+	      r: this.state.M[0] * r
+	    };
+	  },
 	  area_rect: function() {
 	    var subj;
 	    subj = {
@@ -43524,6 +43534,26 @@
 	      height: 2.89,
 	      x: -100,
 	      y: 23.368
+	    };
+	    return this.rect_t(subj);
+	  },
+	  overview_main_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 44.467,
+	      x: -100,
+	      y: 20.47215
+	    };
+	    return this.rect_t(subj);
+	  },
+	  portrait_photo_square: function() {
+	    var subj;
+	    subj = {
+	      x: -98.7,
+	      y: 19.8,
+	      width: 14.88,
+	      height: 14.88
 	    };
 	    return this.rect_t(subj);
 	  },
@@ -43597,6 +43627,16 @@
 	    };
 	    return this.rect_t(subj);
 	  },
+	  tab_three_image: function() {
+	    var subj;
+	    subj = {
+	      x: 11,
+	      y: 18,
+	      width: 20,
+	      height: 8
+	    };
+	    return this.rect_t(subj);
+	  },
 	  tabs_area: function() {
 	    var subj;
 	    subj = {
@@ -43604,6 +43644,26 @@
 	      height: 35.16,
 	      x: -34.64,
 	      y: 11.168
+	    };
+	    return this.rect_t(subj);
+	  },
+	  stars_count_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 13.23,
+	      x: -34.64,
+	      y: 10.8
+	    };
+	    return this.rect_t(subj);
+	  },
+	  transactions_assess_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 21.929999,
+	      x: -34.64,
+	      y: -2.062
 	    };
 	    return this.rect_t(subj);
 	  },
@@ -43651,7 +43711,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, i, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, tab_one, tab_one_image, tab_three, tab_two, tab_two_image, tabs_area, temp_color, top_yellow_bar_rect;
+	    var area_rect, i, overview_main_area, portrait_photo_square, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_yellow_bar_rect, transactions_assess_area;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43664,6 +43724,11 @@
 	    tab_three = this.tab_three();
 	    tab_one_image = this.tab_one_image();
 	    tab_two_image = this.tab_two_image();
+	    tab_three_image = this.tab_three_image();
+	    stars_count_area = this.stars_count_area();
+	    transactions_assess_area = this.transactions_assess_area();
+	    overview_main_area = this.overview_main_area();
+	    portrait_photo_square = this.portrait_photo_square();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -43679,6 +43744,18 @@
 	      width: top_yellow_bar_rect.width,
 	      height: top_yellow_bar_rect.height,
 	      fill: '#EFBD00'
+	    }), rect({
+	      x: overview_main_area.origin[0],
+	      y: overview_main_area.origin[1],
+	      width: overview_main_area.width,
+	      height: overview_main_area.height,
+	      fill: 'blue'
+	    }), image({
+	      x: portrait_photo_square.origin[0],
+	      y: portrait_photo_square.origin[1],
+	      width: portrait_photo_square.width,
+	      height: portrait_photo_square.height,
+	      xlinkHref: 'file:../assets/portrait.png'
 	    }), rect({
 	      x: tabs_area.origin[0],
 	      y: tabs_area.origin[1],
@@ -43718,6 +43795,26 @@
 	      width: tab_three.width,
 	      height: tab_three.height,
 	      fill: 'green'
+	    }), image({
+	      x: tab_three_image.origin[0],
+	      y: tab_three_image.origin[1],
+	      width: tab_three_image.width,
+	      height: tab_three_image.height,
+	      xlinkHref: 'file:../assets/etsygrey.png'
+	    }), rect({
+	      x: stars_count_area.origin[0],
+	      y: stars_count_area.origin[1],
+	      width: stars_count_area.width,
+	      height: stars_count_area.height,
+	      fill: 'white',
+	      opacity: 0.6
+	    }), rect({
+	      x: transactions_assess_area.origin[0],
+	      y: transactions_assess_area.origin[1],
+	      width: transactions_assess_area.width,
+	      height: transactions_assess_area.height,
+	      fill: 'grey',
+	      opacity: 0.69
 	    }), rect({
 	      x: reviews_rect.origin[0],
 	      y: reviews_rect.origin[1],

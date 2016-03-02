@@ -4,10 +4,9 @@
     "dependencies": {
         "coffee-script": "latest",
         "coffee-loader": "latest",
-        "gl-matrix": "latest",
-        "ioredis": "latest",
+        "gl-matrix": "2.3.2",
         "lodash": "latest",
-        "react-ajax": "latest",
+        "superagent": "latest",
         "shortid": "latest"
     },
     "devDependencies": {

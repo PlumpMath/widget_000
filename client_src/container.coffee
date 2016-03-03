@@ -41,14 +41,6 @@ main = rr
         @set_boundingRect()
         window.onresize = @debounced_set_boundingRect
 
-    blurb_payload: (square_side, msg_number)->
-        M_002 = [
-            square_side, 0, 0,
-            0, -square_side, 0,
-            (@state.view_width / 4), (50 - (@state.view_height / 10 * msg_number)), 1
-        ]
-        M: M_002
-
     payload_003: ->
         M_003 = [
             @state.view_width / 200, 0, 0,
@@ -56,14 +48,13 @@ main = rr
             (@state.view_width / 2), (@state.view_height / 2), 1
         ]
 
-
-    payload_002: (square_side)->
-        M_002 = [
-            square_side, 0, 0,
-            0, -square_side, 0,
-            (@state.view_width / 2), (@state.view_height / 2), 1
-        ]
-        M: M_002
+    # payload_002: (square_side)->
+    #     M_002 = [
+    #         square_side, 0, 0,
+    #         0, -square_side, 0,
+    #         (@state.view_width / 2), (@state.view_height / 2), 1
+    #     ]
+    #     M: M_002
 
     getInitialState: ->
         messages: []
@@ -75,7 +66,6 @@ main = rr
 
 
     render: ->
-
 
         # payload_000 = =>
         #     M_000 = [

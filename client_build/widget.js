@@ -104,23 +104,9 @@
 	    this.set_boundingRect();
 	    return window.onresize = this.debounced_set_boundingRect;
 	  },
-	  blurb_payload: function(square_side, msg_number) {
-	    var M_002;
-	    M_002 = [square_side, 0, 0, 0, -square_side, 0, this.state.view_width / 4, 50 - (this.state.view_height / 10 * msg_number), 1];
-	    return {
-	      M: M_002
-	    };
-	  },
 	  payload_003: function() {
 	    var M_003;
 	    return M_003 = [this.state.view_width / 200, 0, 0, 0, -this.state.view_width / 200, 0, this.state.view_width / 2, this.state.view_height / 2, 1];
-	  },
-	  payload_002: function(square_side) {
-	    var M_002;
-	    M_002 = [square_side, 0, 0, 0, -square_side, 0, this.state.view_width / 2, this.state.view_height / 2, 1];
-	    return {
-	      M: M_002
-	    };
 	  },
 	  getInitialState: function() {
 	    return {
@@ -43490,6 +43476,8 @@
 	      active_tab: "can be an integer in [0 .. 2]"
 	    };
 	    return this.setState({
+	      mouse_on_tab: -1,
+	      active_tab: 0,
 	      display_name: data.display_name,
 	      total_rating: data.total_rating.toString().substr(0, 4),
 	      facebook_connections: data.social_information.connections
@@ -43497,8 +43485,7 @@
 	  },
 	  componentWillReceiveProps: function(next_props) {
 	    return this.setState({
-	      M: next_props.M,
-	      tab_active: 0
+	      M: next_props.M
 	    });
 	  },
 	  getInitialState: function() {
@@ -43559,6 +43546,16 @@
 	      height: 44.467,
 	      x: -100,
 	      y: 20.47215
+	    };
+	    return this.rect_t(subj);
+	  },
+	  social_media_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 15.925,
+	      x: -100,
+	      y: -8.06
 	    };
 	    return this.rect_t(subj);
 	  },
@@ -43903,7 +43900,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_media_area, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43939,10 +43936,16 @@
 	    twitter_number = this.twitter_number();
 	    twitter_followers_tag = this.twitter_followers_tag();
 	    stars_number = this.stars_number();
+	    social_media_area = this.social_media_area();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
-	    }, defs, filter({
+	    }, defs, pattern({
+	      id: 'triangle',
+	      width: 10,
+	      height: 10,
+	      patternUnits: 'userSpaceOnUse'
+	    }, path, d = "M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2"), filter({
 	      id: 'portrait_image',
 	      x: '0%',
 	      y: '0%',
@@ -43974,7 +43977,14 @@
 	      y: overview_main_area.origin[1],
 	      width: overview_main_area.width,
 	      height: overview_main_area.height,
-	      fill: 'blue'
+	      fill: 'url(#triangle)'
+	    }), rect({
+	      x: social_media_area.origin[0],
+	      y: social_media_area.origin[1],
+	      width: social_media_area.width,
+	      height: social_media_area.height,
+	      fill: 'lightblue',
+	      fill: '#FFFFFF'
 	    }), circle({
 	      cx: portrait_ring_circle.origin[0],
 	      cy: portrait_ring_circle.origin[1],
@@ -44034,7 +44044,6 @@
 	      x: facebook_number.origin[0],
 	      y: facebook_number.origin[1],
 	      'font-size': facebook_number.font_size,
-	      textLength: facebook_number.text_width,
 	      fill: 'grey',
 	      'text-anchor': 'middle'
 	    }, "654"), text({

@@ -27,6 +27,8 @@ module.exports = widget = rr
             active_tab : "can be an integer in [0 .. 2]"
 
         @setState
+            mouse_on_tab: -1 # int in [0 .. 2] indicating mouseovertab or -1 none
+            active_tab: 0 # int in [0 .. 2]
             display_name: data.display_name
             total_rating: data.total_rating.toString().substr(0, 4)
             facebook_connections: data.social_information.connections
@@ -50,12 +52,8 @@ module.exports = widget = rr
         # disregarding push updates for the time being, all the other data on the widget will
         # be loaded once and will stay put.
         # there will also be some animation state
-
-
-
         @setState
             M: next_props.M
-            tab_active: 0
 
     getInitialState: ->
         M: @props.M
@@ -99,6 +97,14 @@ module.exports = widget = rr
             height: 44.467
             x: -100
             y: 20.47215
+        @rect_t subj
+
+    social_media_area: ->
+        subj =
+            width: 65.77
+            height: 15.925
+            x: -100
+            y: -8.06
         @rect_t subj
 
     portrait_photo_border: ->
@@ -416,6 +422,7 @@ module.exports = widget = rr
         twitter_number = @twitter_number()
         twitter_followers_tag = @twitter_followers_tag()
         stars_number = @stars_number()
+        social_media_area = @social_media_area()
 
 
         svg
@@ -433,7 +440,28 @@ module.exports = widget = rr
 #     </filter>
 #     <circle filter="url(#this_image)" cx="180" cy="120" r="80" />
 # </svg>
+
+        # <defs>
+        #     <pattern id="Triangle"
+        #              width="10" height="10"
+        #              patternUnits="userSpaceOnUse">
+        #         <polygon points="5,0 10,10 0,10"/>
+        #     </pattern>
+        # </defs>
             defs
+                pattern
+                    id: 'triangle'
+                    width: 10
+                    height: 10
+                    patternUnits: 'userSpaceOnUse'
+                    ,
+                    # polygon
+                    #     points: "5,0 10,10 0,10"
+                    path
+                        d="M-1,1 l2,-2
+           M0,4 l4,-4
+           M3,5 l2,-2"
+
                 filter
                     id: 'portrait_image'
                     x: '0%'
@@ -494,7 +522,17 @@ module.exports = widget = rr
                 y: overview_main_area.origin[1]
                 width: overview_main_area.width
                 height: overview_main_area.height
-                fill: 'blue'
+                # fill: 'blue'
+                fill: 'url(#triangle)'
+
+
+            rect
+                x: social_media_area.origin[0]
+                y: social_media_area.origin[1]
+                width: social_media_area.width
+                height: social_media_area.height
+                fill: 'lightblue'
+                fill: '#FFFFFF'
 
             # circle
             #     cx: portrait_photo_circle.origin[0]
@@ -585,7 +623,7 @@ module.exports = widget = rr
                 x: facebook_number.origin[0]
                 y: facebook_number.origin[1]
                 'font-size': facebook_number.font_size
-                textLength: facebook_number.text_width
+                # textLength: twitter_number.text_width
                 fill: 'grey'
                 'text-anchor': 'middle'
                 ,

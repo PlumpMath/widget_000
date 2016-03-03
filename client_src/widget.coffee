@@ -4,6 +4,11 @@
 
 
 c 'pattern', pattern
+filter = React.createFactory 'filter'
+# feGaussianBlur = React.createElement 'feGaussianBlur'
+feGaussianBlur = React.createFactory 'feGaussianBlur'
+feImage = React.createFactory 'feImage'
+c 'feGaussianBlur', feGaussianBlur
 c 'filter', filter
 
 mock = require '../mock/mock_000.coffee'
@@ -85,10 +90,26 @@ module.exports = widget = rr
 
     portrait_ring_circle: ->
         subj =
-            x: -78.84
+            x: -77.33
             y: 11.7855
             r: 7.3
         @circle_t subj
+
+    positivity_count_text: ->
+        subj =
+            font_size: 3.309
+            text_width: 11.99
+            x: -83.12
+            y: 12.48
+        @text_t subj
+
+    positive_text: ->
+        subj =
+            font_size: 3.309
+            text_width: 11.99
+            x: -83.12
+            y: 9.09
+        @text_t subj
 
     portrait_photo_square: ->
         subj =
@@ -98,7 +119,36 @@ module.exports = widget = rr
             height: 14.88
         @rect_t subj
 
+    portrait_photo_circle: ->
+        subj =
+            x: -90.7
+            y: 11.7855
+            r: 7.3
+        @circle_t subj
 
+    top_merchant_img: ->
+        subj =
+            x: -49.13
+            y: 18.0
+            width:14
+            height: 14
+        @rect_t subj
+
+    username_banner: ->
+        subj =
+            x: -95.3
+            y: 0
+            font_size: 2.5
+            text_width: 27
+        @text_t subj
+
+    positive_feedback_banner: ->
+        subj =
+            x: -95.3
+            y: -3
+            font_size: 2.3
+            text_width: 29
+        @text_t subj
 
 
 
@@ -217,21 +267,6 @@ module.exports = widget = rr
             y: 14.7
         @text_t subj
 
-    positivity_count_text: ->
-        subj =
-            font_size: 3.309
-            text_width: 11.99
-            x: -84.12
-            y: 12.48
-        @text_t subj
-
-    positive_text: ->
-        subj =
-            font_size: 3.309
-            text_width: 11.99
-            x: -84.12
-            y: 9.09
-        @text_t subj
 
     reviews_number: ->
         subj =
@@ -262,28 +297,62 @@ module.exports = widget = rr
         portrait_photo_square = @portrait_photo_square()
         portrait_photo_border = @portrait_photo_border()
         portrait_ring_circle = @portrait_ring_circle()
+        portrait_photo_circle = @portrait_photo_circle()
         positivity_count_text = @positivity_count_text()
         positive_text = @positive_text()
+        top_merchant_img = @top_merchant_img()
+        username_banner = @username_banner()
+        positive_feedback_banner = @positive_feedback_banner()
 
         svg
             width: '100%'
             height: '100%'
         ,
+
+    # <filter id="f1" x="0" y="0">
+    #   <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+    # </filter>
+
+# <svg width="700" height="660">
+#     <filter id="this_image" x="0%" y="0%" width="100%" height="100%">
+#         <feImage xlink:href="test_image.png"/>
+#     </filter>
+#     <circle filter="url(#this_image)" cx="180" cy="120" r="80" />
+# </svg>
             defs
-                pattern
-                    id: 'pimg'
-                    #
-                    # width: 10
-                    # height: 10
-                    # patternUnits: 'userSpaceOnUse'
+                filter
+                    id: 'portrait_image'
+                    x: '0%'
+                    y: '0%'
+                    width: '100%'
+                    height: '100%'
                     ,
-                        image
-                        #     x: 0
-                        #     y: 0
-                        #     width: 100
-                        #     height: 100
-                            # xlinkHref: 'file:../assets/mwdJ3x17.jpg'
-                            xlinkHref: 'file:../assets/dhgatelogo.png'
+                    feImage
+                        xlinkHref: 'file:../assets/portrait.png'
+                filter
+                    id: 'f1'
+                    x: 0
+                    y: 0
+                    ,
+                    feGaussianBlur
+                        in: 'SourceGraphic'
+                        stdDeviation: 15
+
+
+                # pattern
+                #     id: 'pimg'
+                #     #
+                #     # width: 10
+                #     # height: 10
+                #     # patternUnits: 'userSpaceOnUse'
+                #     ,
+                #         image
+                #         #     x: 0
+                #         #     y: 0
+                #         #     width: 100
+                #         #     height: 100
+                #             # xlinkHref: 'file:../assets/mwdJ3x17.jpg'
+                #             xlinkHref: 'file:../assets/dhgatelogo.png'
 
 # <svg width="700" height="660">
 #   <defs>
@@ -324,8 +393,8 @@ module.exports = widget = rr
                 cx: portrait_ring_circle.origin[0]
                 cy: portrait_ring_circle.origin[1]
                 r: portrait_ring_circle.r
-                # fillOpacity: 0
-                fill: 'url(#ping)'
+                fillOpacity: 0
+                strokeWidth: portrait_ring_circle.r / 20
                 stroke: 'orange'
             text
                 x: positivity_count_text.origin[0]
@@ -334,7 +403,7 @@ module.exports = widget = rr
                 textLength: positivity_count_text.text_width
                 fill: 'orange'
                 ,
-                    "99.6%"
+                "99.6%"
             text
                 x: positive_text.origin[0]
                 y: positive_text.origin[1]
@@ -342,13 +411,25 @@ module.exports = widget = rr
                 textLength: positive_text.text_width
                 fill: 'grey'
                 ,
-                    "Positive"
-            image
-                x: portrait_photo_square.origin[0]
-                y: portrait_photo_square.origin[1]
-                width: portrait_photo_square.width
-                height: portrait_photo_square.height
-                xlinkHref: 'file:../assets/portrait.png'
+                "Positive"
+            circle
+                cx: portrait_photo_circle.origin[0]
+                cy: portrait_photo_circle.origin[1]
+                r: portrait_photo_circle.r
+                filter: 'url(#portrait_image)'
+            circle
+                cx: portrait_photo_circle.origin[0]
+                cy: portrait_photo_circle.origin[1]
+                r: portrait_photo_circle.r
+                stroke: 'grey'
+                strokeWidth: portrait_photo_circle.r / 20
+                fillOpacity: 0
+            # image
+            #     x: portrait_photo_square.origin[0]
+            #     y: portrait_photo_square.origin[1]
+            #     width: portrait_photo_square.width
+            #     height: portrait_photo_square.height
+            #     xlinkHref: 'file:../assets/portrait.png'
             # circle
             #     cx: portrait_photo_border.origin[0]
             #     cy: portrait_photo_border.origin[1]
@@ -356,8 +437,29 @@ module.exports = widget = rr
             #     stroke: 'white'
             #     fillOpacity: 0
 
+            image
+                x: top_merchant_img.origin[0]
+                y: top_merchant_img.origin[1]
+                width: top_merchant_img.width
+                height: top_merchant_img.height
+                xlinkHref: 'file:../assets/dhgicon.png'
 
-
+            text
+                x: username_banner.origin[0]
+                y: username_banner.origin[1]
+                'font-size': username_banner.font_size
+                textLength: username_banner.text_width
+                fill: 'grey'
+                ,
+                    "Dcsamsungmall"
+            text
+                x: positive_feedback_banner.origin[0]
+                y: positive_feedback_banner.origin[1]
+                'font-size': positive_feedback_banner.font_size
+                textLength: positive_feedback_banner.text_width
+                fill: 'grey'
+                ,
+                    "99.6% positive feedback"
 
 
             rect

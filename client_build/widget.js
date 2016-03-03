@@ -43463,13 +43463,21 @@
 /* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, mock, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
+	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feImage, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, mock, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
 
 	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
 
 	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse, pattern = ref1.pattern;
 
 	c('pattern', pattern);
+
+	filter = React.createFactory('filter');
+
+	feGaussianBlur = React.createFactory('feGaussianBlur');
+
+	feImage = React.createFactory('feImage');
+
+	c('feGaussianBlur', feGaussianBlur);
 
 	c('filter', filter);
 
@@ -43559,11 +43567,31 @@
 	  portrait_ring_circle: function() {
 	    var subj;
 	    subj = {
-	      x: -78.84,
+	      x: -77.33,
 	      y: 11.7855,
 	      r: 7.3
 	    };
 	    return this.circle_t(subj);
+	  },
+	  positivity_count_text: function() {
+	    var subj;
+	    subj = {
+	      font_size: 3.309,
+	      text_width: 11.99,
+	      x: -83.12,
+	      y: 12.48
+	    };
+	    return this.text_t(subj);
+	  },
+	  positive_text: function() {
+	    var subj;
+	    subj = {
+	      font_size: 3.309,
+	      text_width: 11.99,
+	      x: -83.12,
+	      y: 9.09
+	    };
+	    return this.text_t(subj);
 	  },
 	  portrait_photo_square: function() {
 	    var subj;
@@ -43574,6 +43602,45 @@
 	      height: 14.88
 	    };
 	    return this.rect_t(subj);
+	  },
+	  portrait_photo_circle: function() {
+	    var subj;
+	    subj = {
+	      x: -90.7,
+	      y: 11.7855,
+	      r: 7.3
+	    };
+	    return this.circle_t(subj);
+	  },
+	  top_merchant_img: function() {
+	    var subj;
+	    subj = {
+	      x: -49.13,
+	      y: 18.0,
+	      width: 14,
+	      height: 14
+	    };
+	    return this.rect_t(subj);
+	  },
+	  username_banner: function() {
+	    var subj;
+	    subj = {
+	      x: -95.3,
+	      y: 0,
+	      font_size: 2.5,
+	      text_width: 27
+	    };
+	    return this.text_t(subj);
+	  },
+	  positive_feedback_banner: function() {
+	    var subj;
+	    subj = {
+	      x: -95.3,
+	      y: -3,
+	      font_size: 2.3,
+	      text_width: 29
+	    };
+	    return this.text_t(subj);
 	  },
 	  reviews_rect: function() {
 	    var subj;
@@ -43718,26 +43785,6 @@
 	    };
 	    return this.text_t(subj);
 	  },
-	  positivity_count_text: function() {
-	    var subj;
-	    subj = {
-	      font_size: 3.309,
-	      text_width: 11.99,
-	      x: -84.12,
-	      y: 12.48
-	    };
-	    return this.text_t(subj);
-	  },
-	  positive_text: function() {
-	    var subj;
-	    subj = {
-	      font_size: 3.309,
-	      text_width: 11.99,
-	      x: -84.12,
-	      y: 9.09
-	    };
-	    return this.text_t(subj);
-	  },
 	  reviews_number: function() {
 	    var subj;
 	    subj = {
@@ -43749,7 +43796,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, i, overview_main_area, portrait_photo_border, portrait_photo_square, portrait_ring_circle, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_yellow_bar_rect, transactions_assess_area;
+	    var area_rect, i, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43769,15 +43816,30 @@
 	    portrait_photo_square = this.portrait_photo_square();
 	    portrait_photo_border = this.portrait_photo_border();
 	    portrait_ring_circle = this.portrait_ring_circle();
+	    portrait_photo_circle = this.portrait_photo_circle();
 	    positivity_count_text = this.positivity_count_text();
 	    positive_text = this.positive_text();
+	    top_merchant_img = this.top_merchant_img();
+	    username_banner = this.username_banner();
+	    positive_feedback_banner = this.positive_feedback_banner();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
-	    }, defs, pattern({
-	      id: 'pimg'
-	    }, image({
-	      xlinkHref: 'file:../assets/dhgatelogo.png'
+	    }, defs, filter({
+	      id: 'portrait_image',
+	      x: '0%',
+	      y: '0%',
+	      width: '100%',
+	      height: '100%'
+	    }, feImage({
+	      xlinkHref: 'file:../assets/portrait.png'
+	    })), filter({
+	      id: 'f1',
+	      x: 0,
+	      y: 0
+	    }, feGaussianBlur({
+	      "in": 'SourceGraphic',
+	      stdDeviation: 15
 	    })), rect({
 	      x: area_rect.origin[0],
 	      y: area_rect.origin[1],
@@ -43800,7 +43862,8 @@
 	      cx: portrait_ring_circle.origin[0],
 	      cy: portrait_ring_circle.origin[1],
 	      r: portrait_ring_circle.r,
-	      fill: 'url(#ping)',
+	      fillOpacity: 0,
+	      strokeWidth: portrait_ring_circle.r / 20,
 	      stroke: 'orange'
 	    }), text({
 	      x: positivity_count_text.origin[0],
@@ -43814,13 +43877,37 @@
 	      'font-size': positive_text.font_size,
 	      textLength: positive_text.text_width,
 	      fill: 'grey'
-	    }, "Positive"), image({
-	      x: portrait_photo_square.origin[0],
-	      y: portrait_photo_square.origin[1],
-	      width: portrait_photo_square.width,
-	      height: portrait_photo_square.height,
-	      xlinkHref: 'file:../assets/portrait.png'
-	    }), rect({
+	    }, "Positive"), circle({
+	      cx: portrait_photo_circle.origin[0],
+	      cy: portrait_photo_circle.origin[1],
+	      r: portrait_photo_circle.r,
+	      filter: 'url(#portrait_image)'
+	    }), circle({
+	      cx: portrait_photo_circle.origin[0],
+	      cy: portrait_photo_circle.origin[1],
+	      r: portrait_photo_circle.r,
+	      stroke: 'grey',
+	      strokeWidth: portrait_photo_circle.r / 20,
+	      fillOpacity: 0
+	    }), image({
+	      x: top_merchant_img.origin[0],
+	      y: top_merchant_img.origin[1],
+	      width: top_merchant_img.width,
+	      height: top_merchant_img.height,
+	      xlinkHref: 'file:../assets/dhgicon.png'
+	    }), text({
+	      x: username_banner.origin[0],
+	      y: username_banner.origin[1],
+	      'font-size': username_banner.font_size,
+	      textLength: username_banner.text_width,
+	      fill: 'grey'
+	    }, "Dcsamsungmall"), text({
+	      x: positive_feedback_banner.origin[0],
+	      y: positive_feedback_banner.origin[1],
+	      'font-size': positive_feedback_banner.font_size,
+	      textLength: positive_feedback_banner.text_width,
+	      fill: 'grey'
+	    }, "99.6% positive feedback"), rect({
 	      x: tabs_area.origin[0],
 	      y: tabs_area.origin[1],
 	      width: tabs_area.width,

@@ -2,14 +2,10 @@
 
 {p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse, pattern} = React.DOM
 
-
-c 'pattern', pattern
 filter = React.createFactory 'filter'
 # feGaussianBlur = React.createElement 'feGaussianBlur'
 feGaussianBlur = React.createFactory 'feGaussianBlur'
 feImage = React.createFactory 'feImage'
-c 'feGaussianBlur', feGaussianBlur
-c 'filter', filter
 
 mock = require '../mock/mock_000.coffee'
 module.exports = widget = rr
@@ -149,6 +145,80 @@ module.exports = widget = rr
             font_size: 2.3
             text_width: 29
         @text_t subj
+
+    facebook_logo: ->
+        subj =
+            x: -89.4
+            y: -9.72
+            width: 2.89
+            height: 2.89
+        @rect_t subj
+
+    facebook_number: ->
+        subj =
+            x: -88
+            y: -15.98
+            text_width: 3.89
+            font_size: 2.89
+        @text_t subj
+
+    facebook_friends_tag: ->
+        subj =
+            x: -88
+            y: -18.98
+            text_width: 3.89
+            font_size: 2.89
+        @text_t subj
+
+    linkedIn_logo: ->
+        subj =
+            x: -70.17
+            y: -9.72
+            width: 2.89
+            height: 2.89
+        @rect_t subj
+
+    linkedIn_number: ->
+        subj =
+            x: -69
+            y: -15.98
+            text_width: 3.89
+            font_size: 2.89
+        @text_t subj
+
+    linkedIn_connections_tag: ->
+        subj =
+            x: -69
+            y: -18.98
+            text_width: 3.89
+            font_size: 2.89
+        @text_t subj
+
+    twitter_logo: ->
+        subj =
+            x: -50.17
+            y: -9.72
+            width: 2.89
+            height: 2.89
+        @rect_t subj
+
+    twitter_number: ->
+        subj =
+            x: -48.8
+            y: -15.98
+            text_width: 3.89
+            font_size: 2.89
+        @text_t subj
+
+
+    twitter_followers_tag: ->
+        subj =
+            x: -48.8
+            y: -18.98
+            text_width: 3.89
+            font_size: 2.89
+        @text_t subj
+
 
 
 
@@ -303,6 +373,16 @@ module.exports = widget = rr
         top_merchant_img = @top_merchant_img()
         username_banner = @username_banner()
         positive_feedback_banner = @positive_feedback_banner()
+        facebook_logo = @facebook_logo()
+        linkedIn_logo = @linkedIn_logo()
+        twitter_logo = @twitter_logo()
+        facebook_number = @facebook_number()
+        facebook_friends_tag = @facebook_friends_tag()
+        linkedIn_number = @linkedIn_number()
+        linkedIn_connections_tag = @linkedIn_connections_tag()
+        twitter_number = @twitter_number()
+        twitter_followers_tag = @twitter_followers_tag()
+
 
         svg
             width: '100%'
@@ -393,8 +473,8 @@ module.exports = widget = rr
                 cx: portrait_ring_circle.origin[0]
                 cy: portrait_ring_circle.origin[1]
                 r: portrait_ring_circle.r
-                fillOpacity: 0
-                strokeWidth: portrait_ring_circle.r / 20
+                'fill-opacity': 0
+                'stroke-width': portrait_ring_circle.r / 20
                 stroke: 'orange'
             text
                 x: positivity_count_text.origin[0]
@@ -422,8 +502,8 @@ module.exports = widget = rr
                 cy: portrait_photo_circle.origin[1]
                 r: portrait_photo_circle.r
                 stroke: 'grey'
-                strokeWidth: portrait_photo_circle.r / 20
-                fillOpacity: 0
+                'stroke-width': portrait_photo_circle.r / 20
+                'fill-opacity': 0
             # image
             #     x: portrait_photo_square.origin[0]
             #     y: portrait_photo_square.origin[1]
@@ -460,6 +540,76 @@ module.exports = widget = rr
                 fill: 'grey'
                 ,
                     "99.6% positive feedback"
+
+            image
+                x: facebook_logo.origin[0]
+                y: facebook_logo.origin[1]
+                width: facebook_logo.width
+                height: facebook_logo.height
+                xlinkHref: 'file:../assets/facebook.svg'
+            text
+                x: facebook_number.origin[0]
+                y: facebook_number.origin[1]
+                'font-size': facebook_number.font_size
+                textLength: facebook_number.text_width
+                fill: 'grey'
+                'text-anchor': 'middle'
+                ,
+                "654"
+            text
+                x: facebook_friends_tag.origin[0]
+                y: facebook_friends_tag.origin[1]
+                'font-size': facebook_friends_tag.font_size
+                fill: 'grey'
+                'text-anchor': 'middle'
+                ,
+                "Friends"
+            image
+                x: linkedIn_logo.origin[0]
+                y: linkedIn_logo.origin[1]
+                width: linkedIn_logo.width
+                height: linkedIn_logo.height
+                xlinkHref: 'file:../assets/linkedin.svg'
+            text
+                x: linkedIn_number.origin[0]
+                y: linkedIn_number.origin[1]
+                'font-size': linkedIn_number.font_size
+                fill: 'grey'
+                'text-anchor': 'middle'
+                ,
+                "238"
+            text
+                x: linkedIn_connections_tag.origin[0]
+                y: linkedIn_connections_tag.origin[1]
+                'font-size': linkedIn_connections_tag.font_size
+                fill: 'grey'
+                'text-anchor': 'middle'
+                ,
+                "Connections"
+            image
+                x: twitter_logo.origin[0]
+                y: twitter_logo.origin[1]
+                width: twitter_logo.width
+                height: twitter_logo.height
+                xlinkHref: 'file:../assets/twitter.svg'
+            text
+                x: twitter_number.origin[0]
+                y: twitter_number.origin[1]
+                'font-size': twitter_number.font_size
+                fill: 'grey'
+                'text-anchor': 'middle'
+                ,
+                "346"
+            text
+                x: twitter_followers_tag.origin[0]
+                y: twitter_followers_tag.origin[1]
+                'font-size': twitter_followers_tag.font_size
+                fill: 'grey'
+                'text-anchor': 'middle'
+                ,
+                "Followers"
+
+
 
 
             rect
@@ -563,6 +713,7 @@ module.exports = widget = rr
                     when 2 then 'lightgreen'
 
                 rect
+                    key: "review_blurb#{i}"
                     x: review_blurb_area.origin[0]
                     y: review_blurb_area.origin[1]
                     width: review_blurb_area.width

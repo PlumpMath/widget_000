@@ -14,6 +14,22 @@ module.exports = widget = rr
         # c 'hi'
         obj = JSON.parse mock
         c 'obj', obj
+        data = obj.data
+
+
+
+        widget_schema_000 =
+            display_name: "Tracy Yamamoto"
+
+
+            accounts:  "three different accounts each with associated reviews"
+            reviews_visible: "can  "
+            active_tab : "can be an integer in [0 .. 2]"
+
+        @setState
+            display_name: data.display_name
+            total_rating: data.total_rating.toString().substr(0, 4)
+            facebook_connections: data.social_information.connections
 
         # request
         # .get "
@@ -30,8 +46,16 @@ module.exports = widget = rr
             #     relevant_reputation: data.relevant_reputation
 
     componentWillReceiveProps: (next_props)->
+        # basically the only dynamic state we need to worry about is which tab is pressed
+        # disregarding push updates for the time being, all the other data on the widget will
+        # be loaded once and will stay put.
+        # there will also be some animation state
+
+
+
         @setState
             M: next_props.M
+            tab_active: 0
 
     getInitialState: ->
         M: @props.M
@@ -219,6 +243,29 @@ module.exports = widget = rr
             font_size: 2.89
         @text_t subj
 
+    stars_count_area: ->
+        subj =
+            width: 65.77
+            height: 13.23
+            x: -34.64
+            y: 10.8
+        @rect_t subj
+
+    transactions_assess_area: ->
+        subj =
+            width: 65.77
+            height: 21.929999
+            x: -34.64
+            y: -2.062
+        @rect_t subj
+
+    stars_number: ->
+        subj =
+            x: -29.5
+            y: 3.3
+            font_size: 7.03
+            text_width: 13.44
+        @text_t subj
 
 
 
@@ -264,8 +311,8 @@ module.exports = widget = rr
 
     tab_two_image: ->
         subj =
-            x: -13
-            y: 20
+            x: -12
+            y: 19.3
             width: 20
             height: 8
         @rect_t subj
@@ -281,7 +328,7 @@ module.exports = widget = rr
     tab_three_image: ->
         subj =
             x: 11
-            y: 18
+            y: 18.8
             width: 20
             height: 8
         @rect_t subj
@@ -294,21 +341,7 @@ module.exports = widget = rr
             y: 11.168
         @rect_t subj
 
-    stars_count_area: ->
-        subj =
-            width: 65.77
-            height: 13.23
-            x: -34.64
-            y: 10.8
-        @rect_t subj
 
-    transactions_assess_area: ->
-        subj =
-            width: 65.77
-            height: 21.929999
-            x: -34.64
-            y: -2.062
-        @rect_t subj
 
     review_blurb_area: (pos) ->
         # pos can be 0 to 2 (there are 3 positions available)
@@ -382,6 +415,7 @@ module.exports = widget = rr
         linkedIn_connections_tag = @linkedIn_connections_tag()
         twitter_number = @twitter_number()
         twitter_followers_tag = @twitter_followers_tag()
+        stars_number = @stars_number()
 
 
         svg
@@ -483,7 +517,7 @@ module.exports = widget = rr
                 textLength: positivity_count_text.text_width
                 fill: 'orange'
                 ,
-                "99.6%"
+                "#{@state.total_rating}%"
             text
                 x: positive_text.origin[0]
                 y: positive_text.origin[1]
@@ -531,7 +565,7 @@ module.exports = widget = rr
                 textLength: username_banner.text_width
                 fill: 'grey'
                 ,
-                    "Dcsamsungmall"
+                    @state.display_name
             text
                 x: positive_feedback_banner.origin[0]
                 y: positive_feedback_banner.origin[1]
@@ -539,7 +573,7 @@ module.exports = widget = rr
                 textLength: positive_feedback_banner.text_width
                 fill: 'grey'
                 ,
-                    "99.6% positive feedback"
+                    "#{@state.total_rating}% positive feedback"
 
             image
                 x: facebook_logo.origin[0]
@@ -664,6 +698,20 @@ module.exports = widget = rr
                 height: stars_count_area.height
                 fill: 'white'
                 opacity: 0.6
+
+            text
+                x: stars_number.origin[0]
+                y: stars_number.origin[1]
+                'font-size': stars_number.font_size
+                fill: 'grey'
+                'text-length': stars_number.text_width
+                ,
+                "4.5"
+            # circle
+            #     cx: stars_number.origin[0]
+            #     cy: stars_number.origin[1]
+            #     r: 3
+
 
             rect
                 x: transactions_assess_area.origin[0]

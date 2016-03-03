@@ -43479,13 +43479,26 @@
 
 	module.exports = widget = rr({
 	  componentDidMount: function() {
-	    var obj;
+	    var data, obj, widget_schema_000;
 	    obj = JSON.parse(mock);
-	    return c('obj', obj);
+	    c('obj', obj);
+	    data = obj.data;
+	    widget_schema_000 = {
+	      display_name: "Tracy Yamamoto",
+	      accounts: "three different accounts each with associated reviews",
+	      reviews_visible: "can  ",
+	      active_tab: "can be an integer in [0 .. 2]"
+	    };
+	    return this.setState({
+	      display_name: data.display_name,
+	      total_rating: data.total_rating.toString().substr(0, 4),
+	      facebook_connections: data.social_information.connections
+	    });
 	  },
 	  componentWillReceiveProps: function(next_props) {
 	    return this.setState({
-	      M: next_props.M
+	      M: next_props.M,
+	      tab_active: 0
 	    });
 	  },
 	  getInitialState: function() {
@@ -43726,6 +43739,36 @@
 	    };
 	    return this.text_t(subj);
 	  },
+	  stars_count_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 13.23,
+	      x: -34.64,
+	      y: 10.8
+	    };
+	    return this.rect_t(subj);
+	  },
+	  transactions_assess_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 21.929999,
+	      x: -34.64,
+	      y: -2.062
+	    };
+	    return this.rect_t(subj);
+	  },
+	  stars_number: function() {
+	    var subj;
+	    subj = {
+	      x: -29.5,
+	      y: 3.3,
+	      font_size: 7.03,
+	      text_width: 13.44
+	    };
+	    return this.text_t(subj);
+	  },
 	  reviews_rect: function() {
 	    var subj;
 	    subj = {
@@ -43779,8 +43822,8 @@
 	  tab_two_image: function() {
 	    var subj;
 	    subj = {
-	      x: -13,
-	      y: 20,
+	      x: -12,
+	      y: 19.3,
 	      width: 20,
 	      height: 8
 	    };
@@ -43800,7 +43843,7 @@
 	    var subj;
 	    subj = {
 	      x: 11,
-	      y: 18,
+	      y: 18.8,
 	      width: 20,
 	      height: 8
 	    };
@@ -43813,26 +43856,6 @@
 	      height: 35.16,
 	      x: -34.64,
 	      y: 11.168
-	    };
-	    return this.rect_t(subj);
-	  },
-	  stars_count_area: function() {
-	    var subj;
-	    subj = {
-	      width: 65.77,
-	      height: 13.23,
-	      x: -34.64,
-	      y: 10.8
-	    };
-	    return this.rect_t(subj);
-	  },
-	  transactions_assess_area: function() {
-	    var subj;
-	    subj = {
-	      width: 65.77,
-	      height: 21.929999,
-	      x: -34.64,
-	      y: -2.062
 	    };
 	    return this.rect_t(subj);
 	  },
@@ -43880,7 +43903,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43915,6 +43938,7 @@
 	    linkedIn_connections_tag = this.linkedIn_connections_tag();
 	    twitter_number = this.twitter_number();
 	    twitter_followers_tag = this.twitter_followers_tag();
+	    stars_number = this.stars_number();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -43964,7 +43988,7 @@
 	      'font-size': positivity_count_text.font_size,
 	      textLength: positivity_count_text.text_width,
 	      fill: 'orange'
-	    }, "99.6%"), text({
+	    }, this.state.total_rating + "%"), text({
 	      x: positive_text.origin[0],
 	      y: positive_text.origin[1],
 	      'font-size': positive_text.font_size,
@@ -43994,13 +44018,13 @@
 	      'font-size': username_banner.font_size,
 	      textLength: username_banner.text_width,
 	      fill: 'grey'
-	    }, "Dcsamsungmall"), text({
+	    }, this.state.display_name), text({
 	      x: positive_feedback_banner.origin[0],
 	      y: positive_feedback_banner.origin[1],
 	      'font-size': positive_feedback_banner.font_size,
 	      textLength: positive_feedback_banner.text_width,
 	      fill: 'grey'
-	    }, "99.6% positive feedback"), image({
+	    }, this.state.total_rating + "% positive feedback"), image({
 	      x: facebook_logo.origin[0],
 	      y: facebook_logo.origin[1],
 	      width: facebook_logo.width,
@@ -44107,7 +44131,13 @@
 	      height: stars_count_area.height,
 	      fill: 'white',
 	      opacity: 0.6
-	    }), rect({
+	    }), text({
+	      x: stars_number.origin[0],
+	      y: stars_number.origin[1],
+	      'font-size': stars_number.font_size,
+	      fill: 'grey',
+	      'text-length': stars_number.text_width
+	    }, "4.5"), rect({
 	      x: transactions_assess_area.origin[0],
 	      y: transactions_assess_area.origin[1],
 	      width: transactions_assess_area.width,

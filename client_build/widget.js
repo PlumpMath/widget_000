@@ -43502,6 +43502,18 @@
 	      height: -(height * this.state.M[4])
 	    };
 	  },
+	  line_t: function(subj_line) {
+	    var origin_1, origin_2, x1, x2, y1, y2;
+	    x1 = subj_line.x1, y1 = subj_line.y1, x2 = subj_line.x2, y2 = subj_line.y2;
+	    origin_1 = vec2.transformMat3(vec2.create(), [x1, y1], this.state.M);
+	    origin_2 = vec2.transformMat3(vec2.create(), [x2, y2], this.state.M);
+	    return {
+	      x1: origin_1[0],
+	      y1: origin_1[1],
+	      x2: origin_2[0],
+	      y2: origin_2[1]
+	    };
+	  },
 	  text_t: function(subj_text) {
 	    var font_size, text_width, x, y;
 	    font_size = subj_text.font_size, text_width = subj_text.text_width, x = subj_text.x, y = subj_text.y;
@@ -43676,6 +43688,16 @@
 	    };
 	    return this.text_t(subj);
 	  },
+	  social_info_separator_1: function() {
+	    var subj;
+	    subj = {
+	      x1: -79.934,
+	      y1: -18.98,
+	      x2: -79.934,
+	      y2: -9.72
+	    };
+	    return this.line_t(subj);
+	  },
 	  linkedIn_logo: function() {
 	    var subj;
 	    subj = {
@@ -43705,6 +43727,16 @@
 	      font_size: 2.89
 	    };
 	    return this.text_t(subj);
+	  },
+	  social_info_separator_2: function() {
+	    var subj;
+	    subj = {
+	      x1: -56.77353,
+	      y1: -18.98,
+	      x2: -56.77353,
+	      y2: -9.72
+	    };
+	    return this.line_t(subj);
 	  },
 	  twitter_logo: function() {
 	    var subj;
@@ -43900,7 +43932,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_media_area, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43931,6 +43963,8 @@
 	    twitter_logo = this.twitter_logo();
 	    facebook_number = this.facebook_number();
 	    facebook_friends_tag = this.facebook_friends_tag();
+	    social_info_separator_1 = this.social_info_separator_1();
+	    social_info_separator_2 = this.social_info_separator_2();
 	    linkedIn_number = this.linkedIn_number();
 	    linkedIn_connections_tag = this.linkedIn_connections_tag();
 	    twitter_number = this.twitter_number();
@@ -43945,7 +43979,14 @@
 	      width: 10,
 	      height: 10,
 	      patternUnits: 'userSpaceOnUse'
-	    }, path, d = "M-1,1 l2,-2 M0,4 l4,-4 M3,5 l2,-2"), filter({
+	    }, line({
+	      x1: 2,
+	      y1: 8,
+	      x2: 8,
+	      y2: 0,
+	      stroke: 'lightgrey',
+	      'stroke-width': .28
+	    })), filter({
 	      id: 'portrait_image',
 	      x: '0%',
 	      y: '0%',
@@ -44052,7 +44093,13 @@
 	      'font-size': facebook_friends_tag.font_size,
 	      fill: 'grey',
 	      'text-anchor': 'middle'
-	    }, "Friends"), image({
+	    }, "Friends"), line({
+	      x1: social_info_separator_1.x1,
+	      y1: social_info_separator_1.y1,
+	      x2: social_info_separator_1.x2,
+	      y2: social_info_separator_1.y2,
+	      stroke: 'lightgrey'
+	    }), image({
 	      x: linkedIn_logo.origin[0],
 	      y: linkedIn_logo.origin[1],
 	      width: linkedIn_logo.width,
@@ -44070,7 +44117,13 @@
 	      'font-size': linkedIn_connections_tag.font_size,
 	      fill: 'grey',
 	      'text-anchor': 'middle'
-	    }, "Connections"), image({
+	    }, "Connections"), line({
+	      x1: social_info_separator_2.x1,
+	      y1: social_info_separator_2.y1,
+	      x2: social_info_separator_2.x2,
+	      y2: social_info_separator_2.y2,
+	      stroke: 'lightgrey'
+	    }), image({
 	      x: twitter_logo.origin[0],
 	      y: twitter_logo.origin[1],
 	      width: twitter_logo.width,

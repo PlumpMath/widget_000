@@ -64,6 +64,15 @@ module.exports = widget = rr
         width: width * @state.M[0]
         height: -(height * @state.M[4])
 
+    line_t: (subj_line)->
+        {x1, y1, x2, y2} = subj_line
+        origin_1 = vec2.transformMat3 vec2.create(), [x1, y1], @state.M
+        origin_2 = vec2.transformMat3 vec2.create(), [x2, y2], @state.M
+        x1: origin_1[0]
+        y1: origin_1[1]
+        x2: origin_2[0]
+        y2: origin_2[1]
+
     text_t: (subj_text)->
         {font_size, text_width, x, y} = subj_text
         origin: vec2.transformMat3 vec2.create(), [x, y], @state.M
@@ -200,6 +209,14 @@ module.exports = widget = rr
             font_size: 2.89
         @text_t subj
 
+    social_info_separator_1: ->
+        subj =
+            x1: -79.934
+            y1: -18.98
+            x2: -79.934
+            y2: -9.72
+        @line_t subj
+
     linkedIn_logo: ->
         subj =
             x: -70.17
@@ -223,6 +240,14 @@ module.exports = widget = rr
             text_width: 3.89
             font_size: 2.89
         @text_t subj
+
+    social_info_separator_2: ->
+        subj =
+            x1: -56.77353
+            y1: -18.98
+            x2: -56.77353
+            y2: -9.72
+        @line_t subj
 
     twitter_logo: ->
         subj =
@@ -417,6 +442,8 @@ module.exports = widget = rr
         twitter_logo = @twitter_logo()
         facebook_number = @facebook_number()
         facebook_friends_tag = @facebook_friends_tag()
+        social_info_separator_1 = @social_info_separator_1()
+        social_info_separator_2 = @social_info_separator_2()
         linkedIn_number = @linkedIn_number()
         linkedIn_connections_tag = @linkedIn_connections_tag()
         twitter_number = @twitter_number()
@@ -457,10 +484,17 @@ module.exports = widget = rr
                     ,
                     # polygon
                     #     points: "5,0 10,10 0,10"
-                    path
-                        d="M-1,1 l2,-2
-           M0,4 l4,-4
-           M3,5 l2,-2"
+                    line
+                        x1: 2
+                        y1: 8
+                        x2: 8
+                        y2: 0
+                        stroke: 'lightgrey'
+                        'stroke-width': .28
+        #             path
+        #                 d="M-10,10 l2,-2
+        #    M0,4 l4,-4
+        #    M3,5 l2,-2"
 
                 filter
                     id: 'portrait_image'
@@ -636,6 +670,12 @@ module.exports = widget = rr
                 'text-anchor': 'middle'
                 ,
                 "Friends"
+            line
+                x1: social_info_separator_1.x1
+                y1: social_info_separator_1.y1
+                x2: social_info_separator_1.x2
+                y2: social_info_separator_1.y2
+                stroke: 'lightgrey'
             image
                 x: linkedIn_logo.origin[0]
                 y: linkedIn_logo.origin[1]
@@ -658,6 +698,12 @@ module.exports = widget = rr
                 'text-anchor': 'middle'
                 ,
                 "Connections"
+            line
+                x1: social_info_separator_2.x1
+                y1: social_info_separator_2.y1
+                x2: social_info_separator_2.x2
+                y2: social_info_separator_2.y2
+                stroke: 'lightgrey'
             image
                 x: twitter_logo.origin[0]
                 y: twitter_logo.origin[1]

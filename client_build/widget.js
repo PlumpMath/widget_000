@@ -43478,6 +43478,7 @@
 	    return this.setState({
 	      mouse_on_tab: -1,
 	      active_tab: 0,
+	      star_count: 3.5,
 	      display_name: data.display_name,
 	      total_rating: data.total_rating.toString().substr(0, 4),
 	      facebook_connections: data.social_information.connections
@@ -43694,7 +43695,7 @@
 	      x1: -79.934,
 	      y1: -18.98,
 	      x2: -79.934,
-	      y2: -9.72
+	      y2: -13.18
 	    };
 	    return this.line_t(subj);
 	  },
@@ -43734,14 +43735,14 @@
 	      x1: -56.77353,
 	      y1: -18.98,
 	      x2: -56.77353,
-	      y2: -9.72
+	      y2: -13.18
 	    };
 	    return this.line_t(subj);
 	  },
 	  twitter_logo: function() {
 	    var subj;
 	    subj = {
-	      x: -50.17,
+	      x: -48,
 	      y: -9.72,
 	      width: 2.89,
 	      height: 2.89
@@ -43751,7 +43752,7 @@
 	  twitter_number: function() {
 	    var subj;
 	    subj = {
-	      x: -48.8,
+	      x: -46.6,
 	      y: -15.98,
 	      text_width: 3.89,
 	      font_size: 2.89
@@ -43761,22 +43762,12 @@
 	  twitter_followers_tag: function() {
 	    var subj;
 	    subj = {
-	      x: -48.8,
+	      x: -46.6,
 	      y: -18.98,
 	      text_width: 3.89,
 	      font_size: 2.89
 	    };
 	    return this.text_t(subj);
-	  },
-	  stars_count_area: function() {
-	    var subj;
-	    subj = {
-	      width: 65.77,
-	      height: 13.23,
-	      x: -34.64,
-	      y: 10.8
-	    };
-	    return this.rect_t(subj);
 	  },
 	  transactions_assess_area: function() {
 	    var subj;
@@ -43785,6 +43776,16 @@
 	      height: 21.929999,
 	      x: -34.64,
 	      y: -2.062
+	    };
+	    return this.rect_t(subj);
+	  },
+	  stars_count_area: function() {
+	    var subj;
+	    subj = {
+	      width: 65.77,
+	      height: 13.23,
+	      x: -34.64,
+	      y: 10.8
 	    };
 	    return this.rect_t(subj);
 	  },
@@ -43798,6 +43799,61 @@
 	    };
 	    return this.text_t(subj);
 	  },
+	  star_one: function() {
+	    var subj;
+	    subj = {
+	      x: -12.3,
+	      y: 7.1,
+	      width: 7.7,
+	      height: 7.7
+	    };
+	    return this.rect_t(subj);
+	  },
+	  clip_half_one: function() {},
+	  star_two: function() {
+	    var subj;
+	    subj = {
+	      x: -3.62,
+	      y: 7.1,
+	      width: 7.7,
+	      height: 7.7
+	    };
+	    return this.rect_t(subj);
+	  },
+	  clip_half_two: function() {},
+	  star_three: function() {
+	    var subj;
+	    subj = {
+	      x: 5.06,
+	      y: 7.1,
+	      width: 7.7,
+	      height: 7.7
+	    };
+	    return this.rect_t(subj);
+	  },
+	  clip_path_three: function() {},
+	  star_four: function() {
+	    var subj;
+	    subj = {
+	      x: 13.73,
+	      y: 7.1,
+	      width: 7.7,
+	      height: 7.7
+	    };
+	    return this.rect_t(subj);
+	  },
+	  clip_path_four: function() {},
+	  star_five: function() {
+	    var subj;
+	    subj = {
+	      x: 22.41,
+	      y: 7.1,
+	      width: 7.7,
+	      height: 7.7
+	    };
+	    return this.rect_t(subj);
+	  },
+	  clip_path_five: function() {},
 	  reviews_rect: function() {
 	    var subj;
 	    subj = {
@@ -43932,7 +43988,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43971,6 +44027,11 @@
 	    twitter_followers_tag = this.twitter_followers_tag();
 	    stars_number = this.stars_number();
 	    social_media_area = this.social_media_area();
+	    star_one = this.star_one();
+	    star_two = this.star_two();
+	    star_three = this.star_three();
+	    star_four = this.star_four();
+	    star_five = this.star_five();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -44199,7 +44260,37 @@
 	      'font-size': stars_number.font_size,
 	      fill: 'grey',
 	      'text-length': stars_number.text_width
-	    }, "4.5"), rect({
+	    }, "4.5"), this.state.star_count > 0 ? image({
+	      x: star_one.origin[0],
+	      y: star_one.origin[1],
+	      width: this.state.star_count < 1 ? star_one.width / 2 : star_one.width,
+	      height: star_one.height,
+	      xlinkHref: this.state.star_count < 1 ? 'file:../assets/halfstar.png' : 'file:../assets/star.png'
+	    }) : void 0, this.state.star_count > 1 ? image({
+	      x: star_two.origin[0],
+	      y: star_two.origin[1],
+	      width: this.state.star_count < 2 ? star_two.width / 2 : star_two.width,
+	      height: star_two.height,
+	      xlinkHref: this.state.star_count < 2 ? 'file:../assets/halfstar.png' : 'file:../assets/star.png'
+	    }) : void 0, this.state.star_count > 2 ? image({
+	      x: star_three.origin[0],
+	      y: star_three.origin[1],
+	      width: this.state.star_count < 3 ? star_three.width / 2 : star_three.width,
+	      height: star_three.height,
+	      xlinkHref: this.state.star_count < 3 ? 'file:../assets/halfstar.png' : 'file:../assets/star.png'
+	    }) : void 0, this.state.star_count > 3 ? image({
+	      x: star_four.origin[0],
+	      y: star_four.origin[1],
+	      width: this.state.star_count < 4 ? star_four.width / 2 : star_four.width,
+	      height: star_four.height,
+	      xlinkHref: this.state.star_count < 4 ? 'file:../assets/halfstar.png' : 'file:../assets/star.png'
+	    }) : void 0, this.state.star_count > 4 ? image({
+	      x: star_five.origin[0],
+	      y: star_five.origin[1],
+	      width: this.state.star_count < 5 ? star_five.width / 2 : star_five.width,
+	      height: star_five.height,
+	      xlinkHref: this.state.star_count < 5 ? 'file:../assets/halfstar.png' : 'file:../assets/star.png'
+	    }) : void 0, rect({
 	      x: transactions_assess_area.origin[0],
 	      y: transactions_assess_area.origin[1],
 	      width: transactions_assess_area.width,

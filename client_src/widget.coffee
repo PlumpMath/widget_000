@@ -29,6 +29,7 @@ module.exports = widget = rr
         @setState
             mouse_on_tab: -1 # int in [0 .. 2] indicating mouseovertab or -1 none
             active_tab: 0 # int in [0 .. 2]
+            star_count: 3.5
             display_name: data.display_name
             total_rating: data.total_rating.toString().substr(0, 4)
             facebook_connections: data.social_information.connections
@@ -214,7 +215,7 @@ module.exports = widget = rr
             x1: -79.934
             y1: -18.98
             x2: -79.934
-            y2: -9.72
+            y2: -13.18
         @line_t subj
 
     linkedIn_logo: ->
@@ -246,12 +247,12 @@ module.exports = widget = rr
             x1: -56.77353
             y1: -18.98
             x2: -56.77353
-            y2: -9.72
+            y2: -13.18
         @line_t subj
 
     twitter_logo: ->
         subj =
-            x: -50.17
+            x: -48
             y: -9.72
             width: 2.89
             height: 2.89
@@ -259,7 +260,7 @@ module.exports = widget = rr
 
     twitter_number: ->
         subj =
-            x: -48.8
+            x: -46.6
             y: -15.98
             text_width: 3.89
             font_size: 2.89
@@ -268,19 +269,11 @@ module.exports = widget = rr
 
     twitter_followers_tag: ->
         subj =
-            x: -48.8
+            x: -46.6
             y: -18.98
             text_width: 3.89
             font_size: 2.89
         @text_t subj
-
-    stars_count_area: ->
-        subj =
-            width: 65.77
-            height: 13.23
-            x: -34.64
-            y: 10.8
-        @rect_t subj
 
     transactions_assess_area: ->
         subj =
@@ -290,6 +283,16 @@ module.exports = widget = rr
             y: -2.062
         @rect_t subj
 
+    stars_count_area: ->
+        subj =
+            width: 65.77
+            height: 13.23
+            x: -34.64
+            y: 10.8
+        @rect_t subj
+
+
+
     stars_number: ->
         subj =
             x: -29.5
@@ -297,6 +300,58 @@ module.exports = widget = rr
             font_size: 7.03
             text_width: 13.44
         @text_t subj
+
+    star_one: ->
+        subj =
+            x: -12.3
+            y: 7.1
+            width: 7.7
+            height: 7.7
+        @rect_t subj
+
+
+    clip_half_one: ->
+
+    star_two: ->
+        subj =
+            x: -3.62
+            y: 7.1
+            width: 7.7
+            height: 7.7
+        @rect_t subj
+
+    clip_half_two: ->
+
+    star_three: ->
+        subj =
+            x: 5.06
+            y: 7.1
+            width: 7.7
+            height: 7.7
+        @rect_t subj
+
+    clip_path_three: ->
+
+    star_four: ->
+        subj =
+            x: 13.73
+            y: 7.1
+            width: 7.7
+            height: 7.7
+        @rect_t subj
+
+    clip_path_four: ->
+
+    star_five: ->
+        subj =
+            x: 22.41
+            y: 7.1
+            width: 7.7
+            height: 7.7
+        @rect_t subj
+
+    clip_path_five: ->
+
 
 
 
@@ -450,6 +505,11 @@ module.exports = widget = rr
         twitter_followers_tag = @twitter_followers_tag()
         stars_number = @stars_number()
         social_media_area = @social_media_area()
+        star_one = @star_one()
+        star_two = @star_two()
+        star_three = @star_three()
+        star_four = @star_four()
+        star_five = @star_five()
 
 
         svg
@@ -475,7 +535,18 @@ module.exports = widget = rr
         #         <polygon points="5,0 10,10 0,10"/>
         #     </pattern>
         # </defs>
+
+    # <defs>
+    #     <clipPath id="myClip">
+    #         <circle cx="30" cy="30" r="20"/>
+    #         <circle cx="70" cy="70" r="20"/>
+    #     </clipPath>
+    # </defs>
             defs
+                # clipPath
+                #     id: 'star_one_halve'
+                # easier just
+
                 pattern
                     id: 'triangle'
                     width: 10
@@ -791,9 +862,65 @@ module.exports = widget = rr
                 'text-length': stars_number.text_width
                 ,
                 "4.5"
+
+            if @state.star_count > 0
+                image
+                    x: star_one.origin[0]
+                    y: star_one.origin[1]
+                    width: if @state.star_count < 1 then star_one.width / 2 else star_one.width
+                    height: star_one.height
+                    xlinkHref: if @state.star_count < 1
+                        'file:../assets/halfstar.png'
+                    else
+                        'file:../assets/star.png'
+
+            if @state.star_count > 1
+                image
+                    x: star_two.origin[0]
+                    y: star_two.origin[1]
+                    width: if @state.star_count < 2 then star_two.width / 2 else star_two.width
+                    height: star_two.height
+                    xlinkHref: if @state.star_count < 2
+                        'file:../assets/halfstar.png'
+                    else
+                        'file:../assets/star.png'
+
+            if @state.star_count > 2
+                image
+                    x: star_three.origin[0]
+                    y: star_three.origin[1]
+                    width: if @state.star_count < 3 then star_three.width / 2 else star_three.width
+                    height: star_three.height
+                    xlinkHref: if @state.star_count < 3
+                        'file:../assets/halfstar.png'
+                    else
+                        'file:../assets/star.png'
+
+            if @state.star_count > 3
+                image
+                    x: star_four.origin[0]
+                    y: star_four.origin[1]
+                    width: if @state.star_count < 4 then star_four.width / 2 else star_four.width
+                    height: star_four.height
+                    xlinkHref: if @state.star_count < 4
+                        'file:../assets/halfstar.png'
+                    else
+                        'file:../assets/star.png'
+
+            if @state.star_count > 4
+                image
+                    x: star_five.origin[0]
+                    y: star_five.origin[1]
+                    width: if @state.star_count < 5 then star_five.width / 2 else star_five.width
+                    height: star_five.height
+                    xlinkHref: if @state.star_count < 5
+                        'file:../assets/halfstar.png'
+                    else
+                        'file:../assets/star.png'
+
             # circle
-            #     cx: stars_number.origin[0]
-            #     cy: stars_number.origin[1]
+            #     cx: star_one.origin[0]
+            #     cy: star_one.origin[1]
             #     r: 3
 
 

@@ -6,8 +6,8 @@
         "coffee-loader": "latest",
         "gl-matrix": "2.3.2",
         "lodash": "latest",
-        "react": "latest",
-        "react-dom": "latest",
+        "react": "0.15.0-alpha.1",
+        "react-dom": "0.15.0-alpha.1",
         "superagent": "latest",
         "shortid": "latest"
     },

@@ -11,6 +11,7 @@ mock = require '../mock/mock_000.coffee'
 module.exports = widget = rr
 
     componentDidMount: ->
+        c "React.version", React.version
         # c 'hi'
         obj = JSON.parse mock
         c 'obj', obj

@@ -43951,6 +43951,46 @@
 	    };
 	    return this.rect_t(subj);
 	  },
+	  number_of_transactions_tag: function() {
+	    var subj;
+	    subj = {
+	      x: -29.8,
+	      y: -5.782,
+	      font_size: 2.33,
+	      text_width: 48.397
+	    };
+	    return this.text_t(subj);
+	  },
+	  item_as_described_tag: function() {
+	    var subj;
+	    subj = {
+	      x: -28.8,
+	      y: -11.982,
+	      font_size: 2.33,
+	      text_width: 22.33
+	    };
+	    return this.text_t(subj);
+	  },
+	  communication_tag: function() {
+	    var subj;
+	    subj = {
+	      x: -28.8,
+	      y: -15.92,
+	      font_size: 2.33,
+	      text_width: 20
+	    };
+	    return this.text_t(subj);
+	  },
+	  delivery_tag: function() {
+	    var subj;
+	    subj = {
+	      x: -28.8,
+	      y: -20.2,
+	      font_size: 2.33,
+	      text_width: 12
+	    };
+	    return this.text_t(subj);
+	  },
 	  review_blurb_area: function(pos) {
 	    var subj, y_pos;
 	    y_pos = function(pos) {
@@ -43995,7 +44035,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -44040,6 +44080,10 @@
 	    star_four = this.star_four();
 	    star_five = this.star_five();
 	    main_separator_one = this.main_separator_one();
+	    number_of_transactions_tag = this.number_of_transactions_tag();
+	    item_as_described_tag = this.item_as_described_tag();
+	    communication_tag = this.communication_tag();
+	    delivery_tag = this.delivery_tag();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -44494,7 +44538,36 @@
 	      height: transactions_assess_area.height,
 	      fill: 'url(#triangle)',
 	      opacity: 0.69
-	    }), rect({
+	    }), text({
+	      x: number_of_transactions_tag.origin[0],
+	      y: number_of_transactions_tag.origin[1],
+	      'font-size': number_of_transactions_tag.font_size,
+	      'text-length': number_of_transactions_tag.text_width,
+	      stroke: 'darkgrey',
+	      'stroke-width': .4,
+	      'font-family': 'Arial'
+	    }, "Number of Transactions made: 3427"), text({
+	      x: item_as_described_tag.origin[0],
+	      y: item_as_described_tag.origin[1],
+	      'font-size': item_as_described_tag.font_size,
+	      'text-length': item_as_described_tag.text_width,
+	      stroke: 'darkgrey',
+	      'stroke-width': .35
+	    }, "Item as described"), text({
+	      x: communication_tag.origin[0],
+	      y: communication_tag.origin[1],
+	      'font-size': communication_tag.font_size,
+	      'text-length': communication_tag.text_width,
+	      stroke: 'darkgrey',
+	      'stroke-width': .35
+	    }, "Communication"), text({
+	      x: delivery_tag.origin[0],
+	      y: delivery_tag.origin[1],
+	      'font-size': delivery_tag.font_size,
+	      'text-length': delivery_tag.text_width,
+	      stroke: 'darkgrey',
+	      'stroke-width': .35
+	    }, "Delivery"), rect({
 	      x: reviews_rect.origin[0],
 	      y: reviews_rect.origin[1],
 	      width: reviews_rect.width,

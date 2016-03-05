@@ -436,6 +436,39 @@ module.exports = widget = rr
         @rect_t subj
 
 
+    number_of_transactions_tag: ->
+        subj =
+            x: -29.8
+            y: -5.782
+            font_size: 2.33
+            text_width: 48.397
+        @text_t subj
+
+    item_as_described_tag: ->
+        subj =
+            x: -28.8
+            y: -11.982
+            font_size: 2.33
+            text_width: 22.33
+        @text_t subj
+
+    communication_tag: ->
+        subj =
+            x: -28.8
+            y: -15.92
+            font_size: 2.33
+            text_width: 20
+        @text_t subj
+
+    delivery_tag: ->
+        subj =
+            x: -28.8
+            y: -20.2
+            font_size: 2.33
+            text_width: 12
+        @text_t subj
+
+
 
     review_blurb_area: (pos) ->
         # pos can be 0 to 2 (there are 3 positions available)
@@ -519,7 +552,10 @@ module.exports = widget = rr
         star_four = @star_four()
         star_five = @star_five()
         main_separator_one = @main_separator_one()
-
+        number_of_transactions_tag = @number_of_transactions_tag()
+        item_as_described_tag = @item_as_described_tag()
+        communication_tag = @communication_tag()
+        delivery_tag = @delivery_tag()
 
         svg
             width: '100%'
@@ -1023,6 +1059,48 @@ module.exports = widget = rr
                 height: transactions_assess_area.height
                 fill: 'url(#triangle)'
                 opacity: 0.69
+
+
+            text
+                x: number_of_transactions_tag.origin[0]
+                y: number_of_transactions_tag.origin[1]
+                'font-size': number_of_transactions_tag.font_size
+                'text-length': number_of_transactions_tag.text_width
+                stroke: 'darkgrey'
+                'stroke-width': .4
+                'font-family': 'Arial'
+                ,
+                "Number of Transactions made: 3427"
+
+            text
+                x: item_as_described_tag.origin[0]
+                y: item_as_described_tag.origin[1]
+                'font-size': item_as_described_tag.font_size
+                'text-length': item_as_described_tag.text_width
+                stroke: 'darkgrey'
+                'stroke-width': .35
+                ,
+                "Item as described"
+
+            text
+                x: communication_tag.origin[0]
+                y: communication_tag.origin[1]
+                'font-size': communication_tag.font_size
+                'text-length': communication_tag.text_width
+                stroke: 'darkgrey'
+                'stroke-width': .35
+                ,
+                "Communication"
+            text
+                x: delivery_tag.origin[0]
+                y: delivery_tag.origin[1]
+                'font-size': delivery_tag.font_size
+                'text-length': delivery_tag.text_width
+                stroke: 'darkgrey'
+                'stroke-width': .35
+                "Delivery"
+
+
 
 
             rect

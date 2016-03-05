@@ -28,7 +28,7 @@ module.exports = widget = rr
 
         @setState
             mouse_on_tab: -1 # int in [0 .. 2] indicating mouseovertab or -1 none
-            active_tab: 0 # int in [0 .. 2]
+            active_tab: 1 # int in [0 .. 2]
             star_count: 3.5
             display_name: data.display_name
             total_rating: data.total_rating.toString().substr(0, 4)
@@ -829,13 +829,38 @@ module.exports = widget = rr
                 y: tab_one.origin[1]
                 width: tab_one.width
                 height: tab_one.height
-                fill: if @state.active_tab is 0 then 'url(#triangle)' else 'lightgrey'
+                onMouseOver: =>
+                    unless @state.active_tab is 0
+                        @setState {mouse_on_tab: 0}
+                onMouseOut: =>
+                    unless @state.active_tab is 0
+                        @setState {mouse_on_tab: -1}
+                fill: do =>
+                    if @state.active_tab is 0
+                        'url(#triangle)'
+                    else
+                        if @state.mouse_on_tab is 0
+                            'grey'
+                        else
+                            'lightgrey'
+                onClick: =>
+                    unless @state.active_tab is 0
+                        @setState active_tab: 0
+
             image
                 x: tab_one_image.origin[0]
                 y: tab_one_image.origin[1]
                 width: tab_one_image.width
                 height: tab_one_image.height
                 xlinkHref: 'file:../assets/dhgatelogo.png'
+                onMouseOver: =>
+                    @setState {mouse_on_tab: 0}
+                onMouseOut: =>
+                    @setState mouse_on_tab: -1
+                onClick: =>
+                    unless @state.active_tab is 0
+                        @setState active_tab: 0
+
             rect
                 x: tab_two.origin[0]
                 y: tab_two.origin[1]
@@ -843,24 +868,75 @@ module.exports = widget = rr
                 height: tab_two.height
                 fill: if @state.active_tab is 1 then 'url(#triangle)' else 'lightgrey'
                 onClick: -> c 'test'
+                onMouseOver: =>
+                    unless @state.active_tab is 1
+                        @setState {mouse_on_tab: 1}
+                onMouseOut: =>
+                    unless @state.active_tab is 1
+                        @setState {mouse_on_tab: -1}
+                fill: do =>
+                    if @state.active_tab is 1
+                        'url(#triangle)'
+                    else
+                        if @state.mouse_on_tab is 1
+                            'grey'
+                        else
+                            'lightgrey'
+                onClick: =>
+                    unless @state.active_tab is 1
+                        @setState active_tab: 1
+
             image
                 x: tab_two_image.origin[0]
                 y: tab_two_image.origin[1]
                 width: tab_two_image.width
                 height: tab_two_image.height
                 xlinkHref: 'file:../assets/ebaycolor.png'
+                onMouseOver: =>
+                    @setState {mouse_on_tab: 1}
+                onMouseOut: =>
+                    @setState {mouse_on_tab: -1}
+                onClick: =>
+                    unless @state.active_tab is 1
+                        @setState active_tab: 1
+
             rect
                 x: tab_three.origin[0]
                 y: tab_three.origin[1]
                 width: tab_three.width
                 height: tab_three.height
                 fill: if @state.active_tab is 2 then 'url(#triangle)' else 'lightgrey'
+                onMouseOver: =>
+                    unless @state.active_tab is 2
+                        @setState {mouse_on_tab: 2}
+                onMouseOut: =>
+                    unless @state.active_tab is 2
+                        @setState {mouse_on_tab: -1}
+                fill: do =>
+                    if @state.active_tab is 2
+                        'url(#triangle)'
+                    else
+                        if @state.mouse_on_tab is 2
+                            'grey'
+                        else
+                            'lightgrey'
+                onClick: =>
+                    unless @state.active_tab is 2
+                        @setState active_tab: 2
             image
                 x: tab_three_image.origin[0]
                 y: tab_three_image.origin[1]
                 width: tab_three_image.width
                 height: tab_three_image.height
                 xlinkHref: 'file:../assets/etsygrey.png'
+                onMouseOver: =>
+                    @setState {mouse_on_tab: 2}
+                onMouseOut: =>
+                    @setState {mouse_on_tab: -1}
+                onClick: =>
+                    unless @state.active_tab is 2
+                        @setState active_tab: 2
+
 
             rect
                 x: stars_count_area.origin[0]

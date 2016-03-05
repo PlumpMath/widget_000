@@ -43477,7 +43477,7 @@
 	    };
 	    return this.setState({
 	      mouse_on_tab: -1,
-	      active_tab: 0,
+	      active_tab: 1,
 	      star_count: 3.5,
 	      display_name: data.display_name,
 	      total_rating: data.total_rating.toString().substr(0, 4),
@@ -44222,13 +44222,75 @@
 	      y: tab_one.origin[1],
 	      width: tab_one.width,
 	      height: tab_one.height,
-	      fill: this.state.active_tab === 0 ? 'url(#triangle)' : 'lightgrey'
+	      onMouseOver: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 0) {
+	            return _this.setState({
+	              mouse_on_tab: 0
+	            });
+	          }
+	        };
+	      })(this),
+	      onMouseOut: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 0) {
+	            return _this.setState({
+	              mouse_on_tab: -1
+	            });
+	          }
+	        };
+	      })(this),
+	      fill: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab === 0) {
+	            return 'url(#triangle)';
+	          } else {
+	            if (_this.state.mouse_on_tab === 0) {
+	              return 'grey';
+	            } else {
+	              return 'lightgrey';
+	            }
+	          }
+	        };
+	      })(this)(),
+	      onClick: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 0) {
+	            return _this.setState({
+	              active_tab: 0
+	            });
+	          }
+	        };
+	      })(this)
 	    }), image({
 	      x: tab_one_image.origin[0],
 	      y: tab_one_image.origin[1],
 	      width: tab_one_image.width,
 	      height: tab_one_image.height,
-	      xlinkHref: 'file:../assets/dhgatelogo.png'
+	      xlinkHref: 'file:../assets/dhgatelogo.png',
+	      onMouseOver: (function(_this) {
+	        return function() {
+	          return _this.setState({
+	            mouse_on_tab: 0
+	          });
+	        };
+	      })(this),
+	      onMouseOut: (function(_this) {
+	        return function() {
+	          return _this.setState({
+	            mouse_on_tab: -1
+	          });
+	        };
+	      })(this),
+	      onClick: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 0) {
+	            return _this.setState({
+	              active_tab: 0
+	            });
+	          }
+	        };
+	      })(this)
 	    }), rect({
 	      x: tab_two.origin[0],
 	      y: tab_two.origin[1],
@@ -44237,25 +44299,151 @@
 	      fill: this.state.active_tab === 1 ? 'url(#triangle)' : 'lightgrey',
 	      onClick: function() {
 	        return c('test');
-	      }
+	      },
+	      onMouseOver: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 1) {
+	            return _this.setState({
+	              mouse_on_tab: 1
+	            });
+	          }
+	        };
+	      })(this),
+	      onMouseOut: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 1) {
+	            return _this.setState({
+	              mouse_on_tab: -1
+	            });
+	          }
+	        };
+	      })(this),
+	      fill: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab === 1) {
+	            return 'url(#triangle)';
+	          } else {
+	            if (_this.state.mouse_on_tab === 1) {
+	              return 'grey';
+	            } else {
+	              return 'lightgrey';
+	            }
+	          }
+	        };
+	      })(this)(),
+	      onClick: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 1) {
+	            return _this.setState({
+	              active_tab: 1
+	            });
+	          }
+	        };
+	      })(this)
 	    }), image({
 	      x: tab_two_image.origin[0],
 	      y: tab_two_image.origin[1],
 	      width: tab_two_image.width,
 	      height: tab_two_image.height,
-	      xlinkHref: 'file:../assets/ebaycolor.png'
+	      xlinkHref: 'file:../assets/ebaycolor.png',
+	      onMouseOver: (function(_this) {
+	        return function() {
+	          return _this.setState({
+	            mouse_on_tab: 1
+	          });
+	        };
+	      })(this),
+	      onMouseOut: (function(_this) {
+	        return function() {
+	          return _this.setState({
+	            mouse_on_tab: -1
+	          });
+	        };
+	      })(this),
+	      onClick: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 1) {
+	            return _this.setState({
+	              active_tab: 1
+	            });
+	          }
+	        };
+	      })(this)
 	    }), rect({
 	      x: tab_three.origin[0],
 	      y: tab_three.origin[1],
 	      width: tab_three.width,
 	      height: tab_three.height,
-	      fill: this.state.active_tab === 2 ? 'url(#triangle)' : 'lightgrey'
+	      fill: this.state.active_tab === 2 ? 'url(#triangle)' : 'lightgrey',
+	      onMouseOver: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 2) {
+	            return _this.setState({
+	              mouse_on_tab: 2
+	            });
+	          }
+	        };
+	      })(this),
+	      onMouseOut: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 2) {
+	            return _this.setState({
+	              mouse_on_tab: -1
+	            });
+	          }
+	        };
+	      })(this),
+	      fill: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab === 2) {
+	            return 'url(#triangle)';
+	          } else {
+	            if (_this.state.mouse_on_tab === 2) {
+	              return 'grey';
+	            } else {
+	              return 'lightgrey';
+	            }
+	          }
+	        };
+	      })(this)(),
+	      onClick: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 2) {
+	            return _this.setState({
+	              active_tab: 2
+	            });
+	          }
+	        };
+	      })(this)
 	    }), image({
 	      x: tab_three_image.origin[0],
 	      y: tab_three_image.origin[1],
 	      width: tab_three_image.width,
 	      height: tab_three_image.height,
-	      xlinkHref: 'file:../assets/etsygrey.png'
+	      xlinkHref: 'file:../assets/etsygrey.png',
+	      onMouseOver: (function(_this) {
+	        return function() {
+	          return _this.setState({
+	            mouse_on_tab: 2
+	          });
+	        };
+	      })(this),
+	      onMouseOut: (function(_this) {
+	        return function() {
+	          return _this.setState({
+	            mouse_on_tab: -1
+	          });
+	        };
+	      })(this),
+	      onClick: (function(_this) {
+	        return function() {
+	          if (_this.state.active_tab !== 2) {
+	            return _this.setState({
+	              active_tab: 2
+	            });
+	          }
+	        };
+	      })(this)
 	    }), rect({
 	      x: stars_count_area.origin[0],
 	      y: stars_count_area.origin[1],

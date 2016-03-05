@@ -34,6 +34,8 @@ module.exports = widget = rr
             total_rating: data.total_rating.toString().substr(0, 4)
             facebook_connections: data.social_information.connections
             item_as_described_score: 4
+            communication_score: 3
+            delivery_score: 5
 
         # request
         # .get "
@@ -1245,6 +1247,58 @@ module.exports = widget = rr
                 fill: 'lightgrey'
                 transform: "translate(0, #{progress_bar_translate})"
 
+            switch @state.communication_score
+                when 1
+                    rect
+                        x: progress_bar_at_one.origin[0]
+                        y: progress_bar_at_one.origin[1]
+                        width: progress_bar_at_one.width
+                        height: progress_bar_at_one.height
+                        rx: progress_bar_at_one.rx
+                        ry: progress_bar_at_one.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate})"
+                when 2
+                    rect
+                        x: progress_bar_at_two.origin[0]
+                        y: progress_bar_at_two.origin[1]
+                        width: progress_bar_at_two.width
+                        height: progress_bar_at_two.height
+                        rx: progress_bar_at_two.rx
+                        ry: progress_bar_at_two.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate})"
+                when 3
+                    rect
+                        x: progress_bar_at_three.origin[0]
+                        y: progress_bar_at_three.origin[1]
+                        width: progress_bar_at_three.width
+                        height: progress_bar_at_three.height
+                        rx: progress_bar_at_three.rx
+                        ry: progress_bar_at_three.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate})"
+                when 4
+                    rect
+                        x: progress_bar_at_four.origin[0]
+                        y: progress_bar_at_four.origin[1]
+                        width: progress_bar_at_four.width
+                        height: progress_bar_at_four.height
+                        rx: progress_bar_at_four.rx
+                        ry: progress_bar_at_four.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate})"
+                when 5
+                    rect
+                        x: progress_bar.origin[0]
+                        y: progress_bar.origin[1]
+                        width: progress_bar.width
+                        height: progress_bar.height
+                        rx: progress_bar.rx
+                        ry: progress_bar.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate})"
+
             rect
                 x: progress_bar.origin[0]
                 y: progress_bar.origin[1]
@@ -1254,6 +1308,58 @@ module.exports = widget = rr
                 ry: progress_bar.ry
                 fill: 'lightgrey'
                 transform: "translate(0, #{progress_bar_translate * 2})"
+
+            switch @state.delivery_score
+                when 1
+                    rect
+                        x: progress_bar_at_one.origin[0]
+                        y: progress_bar_at_one.origin[1]
+                        width: progress_bar_at_one.width
+                        height: progress_bar_at_one.height
+                        rx: progress_bar_at_one.rx
+                        ry: progress_bar_at_one.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate * 2})"
+                when 2
+                    rect
+                        x: progress_bar_at_two.origin[0]
+                        y: progress_bar_at_two.origin[1]
+                        width: progress_bar_at_two.width
+                        height: progress_bar_at_two.height
+                        rx: progress_bar_at_two.rx
+                        ry: progress_bar_at_two.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate * 2})"
+                when 3
+                    rect
+                        x: progress_bar_at_three.origin[0]
+                        y: progress_bar_at_three.origin[1]
+                        width: progress_bar_at_three.width
+                        height: progress_bar_at_three.height
+                        rx: progress_bar_at_three.rx
+                        ry: progress_bar_at_three.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate * 2})"
+                when 4
+                    rect
+                        x: progress_bar_at_four.origin[0]
+                        y: progress_bar_at_four.origin[1]
+                        width: progress_bar_at_four.width
+                        height: progress_bar_at_four.height
+                        rx: progress_bar_at_four.rx
+                        ry: progress_bar_at_four.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate * 2})"
+                when 5
+                    rect
+                        x: progress_bar.origin[0]
+                        y: progress_bar.origin[1]
+                        width: progress_bar.width
+                        height: progress_bar.height
+                        rx: progress_bar.rx
+                        ry: progress_bar.ry
+                        fill: '#EFBD00'
+                        transform: "translate(0, #{progress_bar_translate * 2})"
 
 
 

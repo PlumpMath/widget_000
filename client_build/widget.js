@@ -42897,13 +42897,15 @@
 /* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var React, React_DOM, _, a, assign, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feImage, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, mock, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
+	var React, React_DOM, _, a, assign, body, c, circle, clipPath, code, d, defs, div, ellipse, feBlend, feGaussianBlur, feImage, feMerge, feMergeNode, feOffset, filter, foreignObject, g, gl_mat, h1, h2, h3, h4, h5, h6, image, input, keys, li, line, linearGradient, mat3, mock, ol, p, path, pattern, polygon, polyline, r_aj, radialGradient, rect, ref, ref1, request, rr, shortid, span, stop, svg, text, ul, vec2, vec3, widget;
 
 	ref = __webpack_require__(2)(), request = ref.request, _ = ref._, gl_mat = ref.gl_mat, r_aj = ref.r_aj, React = ref.React, React_DOM = ref.React_DOM, rr = ref.rr, c = ref.c, shortid = ref.shortid, assign = ref.assign, keys = ref.keys, mat3 = ref.mat3, vec3 = ref.vec3, vec2 = ref.vec2;
 
-	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse, pattern = ref1.pattern;
+	ref1 = React.DOM, p = ref1.p, div = ref1.div, h1 = ref1.h1, h2 = ref1.h2, h3 = ref1.h3, h4 = ref1.h4, h5 = ref1.h5, h6 = ref1.h6, span = ref1.span, svg = ref1.svg, circle = ref1.circle, rect = ref1.rect, ul = ref1.ul, line = ref1.line, li = ref1.li, ol = ref1.ol, code = ref1.code, a = ref1.a, input = ref1.input, defs = ref1.defs, clipPath = ref1.clipPath, body = ref1.body, linearGradient = ref1.linearGradient, stop = ref1.stop, g = ref1.g, path = ref1.path, d = ref1.d, polygon = ref1.polygon, image = ref1.image, pattern = ref1.pattern, filter = ref1.filter, feBlend = ref1.feBlend, feOffset = ref1.feOffset, polyline = ref1.polyline, feGaussianBlur = ref1.feGaussianBlur, feMergeNode = ref1.feMergeNode, feMerge = ref1.feMerge, radialGradient = ref1.radialGradient, foreignObject = ref1.foreignObject, text = ref1.text, ellipse = ref1.ellipse, pattern = ref1.pattern;
 
 	filter = React.createFactory('filter');
+
+	foreignObject = React.createFactory('foreignObject');
 
 	feGaussianBlur = React.createFactory('feGaussianBlur');
 
@@ -42925,6 +42927,7 @@
 	      active_tab: "can be an integer in [0 .. 2]"
 	    };
 	    return this.setState({
+	      review_one_text: data.relevant_reputation[0].reviews[0].review_content,
 	      mouse_on_tab: -1,
 	      active_tab: 1,
 	      star_count: 3.5,
@@ -43519,6 +43522,20 @@
 	    return this.rect_r_t(subj);
 	  },
 	  progress_at_five: function() {},
+	  foreign_div: function() {
+	    return {
+	      style: {
+	        display: 'block',
+	        position: 'absolute',
+	        width: '100%',
+	        height: '100%',
+	        left: 0,
+	        right: 0,
+	        top: 0,
+	        bottom: 0
+	      }
+	    };
+	  },
 	  review_blurb_area: function(pos) {
 	    var subj, y_pos;
 	    y_pos = function(pos) {
@@ -43571,13 +43588,23 @@
 	    };
 	    return this.circle_t(subj);
 	  },
+	  review_text: function() {
+	    var subj;
+	    subj = {
+	      x: 47.876,
+	      y: 9.5,
+	      font_size: 1.654,
+	      text_width: 32
+	    };
+	    return this.text_t(subj);
+	  },
 	  review_translate: function() {
 	    return -(10.75 * this.state.M[4]);
 	  },
 	  review_blurb_circle_two: function() {},
 	  review_blurb_circle_three: function() {},
 	  render: function() {
-	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, progress_bar, progress_bar_at_four, progress_bar_at_one, progress_bar_at_three, progress_bar_at_two, progress_bar_translate, review_blurb_area, review_blurb_circle_one, review_translate, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, progress_bar, progress_bar_at_four, progress_bar_at_one, progress_bar_at_three, progress_bar_at_two, progress_bar_translate, review_blurb_area, review_blurb_circle_one, review_text, review_translate, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43634,6 +43661,7 @@
 	    progress_bar_at_four = this.progress_bar_at_four();
 	    review_blurb_circle_one = this.review_blurb_circle_one();
 	    review_translate = this.review_translate();
+	    review_text = this.review_text();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -44345,7 +44373,18 @@
 	      r: review_blurb_circle_one.r,
 	      stroke: '#EFBD00',
 	      'fill-opacity': 0
-	    }), circle({
+	    }), foreignObject({
+	      x: review_text.origin[0],
+	      y: review_text.origin[1],
+	      width: review_text.text_width,
+	      height: this.review_blurb_area(0).height
+	    }, p({
+	      style: {
+	        'padding': 0,
+	        'margin-top': 0,
+	        'font-size': 5
+	      }
+	    }, "\"" + this.state.review_one_text + "\"")), circle({
 	      cx: review_blurb_circle_one.origin[0],
 	      cy: review_blurb_circle_one.origin[1],
 	      r: review_blurb_circle_one.r,

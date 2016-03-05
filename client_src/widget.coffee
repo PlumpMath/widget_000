@@ -1,9 +1,9 @@
 {request, _, gl_mat, r_aj, React, React_DOM, rr, c, shortid, assign, keys, mat3, vec3, vec2} = require('./boilerplate.coffee')()
 
-{p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse, pattern} = React.DOM
+{p, div, h1, h2, h3, h4, h5, h6, span, svg, circle, rect, ul, line, li, ol, code, a, input, defs, clipPath, body, linearGradient, stop, g, path, d, polygon, image, pattern, filter, feBlend, feOffset, polyline, feGaussianBlur, feMergeNode, feMerge, radialGradient, foreignObject, text, ellipse, pattern} = React.DOM
 
 filter = React.createFactory 'filter'
-# feGaussianBlur = React.createElement 'feGaussianBlur'
+foreignObject = React.createFactory 'foreignObject'
 feGaussianBlur = React.createFactory 'feGaussianBlur'
 feImage = React.createFactory 'feImage'
 
@@ -28,6 +28,7 @@ module.exports = widget = rr
             active_tab : "can be an integer in [0 .. 2]"
 
         @setState
+            review_one_text: data.relevant_reputation[0].reviews[0].review_content
             mouse_on_tab: -1 # int in [0 .. 2] indicating mouseovertab or -1 none
             active_tab: 1 # int in [0 .. 2]
             star_count: 3.5
@@ -541,7 +542,16 @@ module.exports = widget = rr
     progress_at_five: ->
         # done
 
-
+    foreign_div: ->
+        style:
+            display: 'block'
+            position: 'absolute'
+            width: '100%'
+            height: '100%'
+            left: 0
+            right: 0
+            top: 0
+            bottom: 0
 
 
     review_blurb_area: (pos) ->
@@ -587,8 +597,20 @@ module.exports = widget = rr
             r: 1.24
         @circle_t subj
 
+
+
+    review_text: ->
+        subj =
+            x: 47.876
+            y: 9.5
+            font_size: 1.654
+            text_width: 32
+        @text_t subj
+
     review_translate: ->
         -(10.75 * @state.M[4])
+
+
 
     # might prefer a translate here
     review_blurb_circle_two: ->
@@ -654,6 +676,7 @@ module.exports = widget = rr
         progress_bar_at_four = @progress_bar_at_four()
         review_blurb_circle_one = @review_blurb_circle_one()
         review_translate = @review_translate()
+        review_text = @review_text()
 
         svg
             width: '100%'
@@ -1422,6 +1445,29 @@ module.exports = widget = rr
                 r: review_blurb_circle_one.r
                 stroke: '#EFBD00'
                 'fill-opacity': 0
+
+            # text
+            #     x: review_text.origin[0]
+            #     y: review_text.origin[1]
+            #     'font-size': review_text.font_size
+            #     'text-length': review_text.text_width
+            #     ,
+            #     "\"#{@state.review_one_text}\""
+
+            foreignObject
+                x: review_text.origin[0]
+                y: review_text.origin[1]
+                width: review_text.text_width
+                height: @review_blurb_area(0).height
+                ,
+
+                p
+                    style:
+                        'padding': 0
+                        'margin-top': 0
+                        'font-size': 5
+                    ,
+                    "\"#{@state.review_one_text}\""
 
             circle
                 cx: review_blurb_circle_one.origin[0]

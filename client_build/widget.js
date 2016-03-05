@@ -43562,8 +43562,22 @@
 	    };
 	    return this.text_t(subj);
 	  },
+	  review_blurb_circle_one: function() {
+	    var subj;
+	    subj = {
+	      x: 42.916,
+	      y: 5.5836,
+	      r: 1.24
+	    };
+	    return this.circle_t(subj);
+	  },
+	  review_translate: function() {
+	    return -(10.75 * this.state.M[4]);
+	  },
+	  review_blurb_circle_two: function() {},
+	  review_blurb_circle_three: function() {},
 	  render: function() {
-	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, progress_bar, progress_bar_at_four, progress_bar_at_one, progress_bar_at_three, progress_bar_at_two, progress_bar_translate, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, progress_bar, progress_bar_at_four, progress_bar_at_one, progress_bar_at_three, progress_bar_at_two, progress_bar_translate, review_blurb_area, review_blurb_circle_one, review_translate, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -43618,6 +43632,8 @@
 	    progress_bar_at_two = this.progress_bar_at_two();
 	    progress_bar_at_three = this.progress_bar_at_three();
 	    progress_bar_at_four = this.progress_bar_at_four();
+	    review_blurb_circle_one = this.review_blurb_circle_one();
+	    review_translate = this.review_translate();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -44301,13 +44317,14 @@
 	      y: reviews_rect.origin[1],
 	      width: reviews_rect.width,
 	      height: reviews_rect.height,
-	      fill: 'yellow'
+	      fill: 'url(#triangle)'
 	    }), rect({
 	      x: reviews_scroller.origin[0],
 	      y: reviews_scroller.origin[1],
 	      width: reviews_scroller.width,
 	      height: reviews_scroller.height,
-	      fill: 'lightblue'
+	      fill: 'lightblue',
+	      'fill-opacity': 0
 	    }), text({
 	      x: reviews_title.origin[0],
 	      y: reviews_title.origin[1],
@@ -44322,28 +44339,38 @@
 	      'font-family': 'Verdana',
 	      fill: '#666666',
 	      textLength: reviews_number.text_width
-	    }, "(+388)"), (function() {
+	    }, "(+388)"), circle({
+	      cx: review_blurb_circle_one.origin[0],
+	      cy: review_blurb_circle_one.origin[1],
+	      r: review_blurb_circle_one.r,
+	      stroke: '#EFBD00',
+	      'fill-opacity': 0
+	    }), circle({
+	      cx: review_blurb_circle_one.origin[0],
+	      cy: review_blurb_circle_one.origin[1],
+	      r: review_blurb_circle_one.r,
+	      stroke: '#EFBD00',
+	      'fill-opacity': 0,
+	      transform: "translate(0, " + review_translate + ")"
+	    }), circle({
+	      cx: review_blurb_circle_one.origin[0],
+	      cy: review_blurb_circle_one.origin[1],
+	      r: review_blurb_circle_one.r,
+	      stroke: '#EFBD00',
+	      'fill-opacity': 0,
+	      transform: "translate(0, " + (review_translate * 2) + ")"
+	    }), (function() {
 	      var j, results;
 	      results = [];
 	      for (i = j = 0; j <= 2; i = ++j) {
 	        review_blurb_area = this.review_blurb_area(i);
-	        temp_color = (function() {
-	          switch (i) {
-	            case 0:
-	              return 'green';
-	            case 1:
-	              return 'blue';
-	            case 2:
-	              return 'lightgreen';
-	          }
-	        })();
 	        results.push(rect({
 	          key: "review_blurb" + i,
 	          x: review_blurb_area.origin[0],
 	          y: review_blurb_area.origin[1],
 	          width: review_blurb_area.width,
 	          height: review_blurb_area.height,
-	          fill: temp_color
+	          fill: 'url(#triangle)'
 	        }));
 	      }
 	      return results;

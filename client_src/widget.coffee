@@ -580,6 +580,22 @@ module.exports = widget = rr
             y: 14.7
         @text_t subj
 
+    review_blurb_circle_one: ->
+        subj =
+            x: 42.916
+            y: 5.5836
+            r: 1.24
+        @circle_t subj
+
+    review_translate: ->
+        -(10.75 * @state.M[4])
+
+    # might prefer a translate here
+    review_blurb_circle_two: ->
+
+    review_blurb_circle_three: ->
+
+
 
 
     render: ->
@@ -636,6 +652,8 @@ module.exports = widget = rr
         progress_bar_at_two = @progress_bar_at_two()
         progress_bar_at_three = @progress_bar_at_three()
         progress_bar_at_four = @progress_bar_at_four()
+        review_blurb_circle_one = @review_blurb_circle_one()
+        review_translate = @review_translate()
 
         svg
             width: '100%'
@@ -1371,13 +1389,14 @@ module.exports = widget = rr
                 y: reviews_rect.origin[1]
                 width: reviews_rect.width
                 height: reviews_rect.height
-                fill: 'yellow'
+                fill: 'url(#triangle)'
             rect
                 x: reviews_scroller.origin[0]
                 y: reviews_scroller.origin[1]
                 width: reviews_scroller.width
                 height: reviews_scroller.height
                 fill: 'lightblue'
+                'fill-opacity': 0
             text
                 x: reviews_title.origin[0]
                 y: reviews_title.origin[1]
@@ -1397,12 +1416,35 @@ module.exports = widget = rr
                 ,
                 "(+388)"
 
+            circle
+                cx: review_blurb_circle_one.origin[0]
+                cy: review_blurb_circle_one.origin[1]
+                r: review_blurb_circle_one.r
+                stroke: '#EFBD00'
+                'fill-opacity': 0
+
+            circle
+                cx: review_blurb_circle_one.origin[0]
+                cy: review_blurb_circle_one.origin[1]
+                r: review_blurb_circle_one.r
+                stroke: '#EFBD00'
+                'fill-opacity': 0
+                transform: "translate(0, #{review_translate})"
+
+            circle
+                cx: review_blurb_circle_one.origin[0]
+                cy: review_blurb_circle_one.origin[1]
+                r: review_blurb_circle_one.r
+                stroke: '#EFBD00'
+                'fill-opacity': 0
+                transform: "translate(0, #{review_translate * 2})"
+
             for i in [0 .. 2]
                 review_blurb_area = @review_blurb_area(i)
-                temp_color = switch i
-                    when 0 then 'green'
-                    when 1 then 'blue'
-                    when 2 then 'lightgreen'
+                # temp_color = switch i
+                #     when 0 then 'green'
+                #     when 1 then 'blue'
+                #     when 2 then 'lightgreen'
 
                 rect
                     key: "review_blurb#{i}"
@@ -1410,7 +1452,7 @@ module.exports = widget = rr
                     y: review_blurb_area.origin[1]
                     width: review_blurb_area.width
                     height: review_blurb_area.height
-                    fill: temp_color
+                    fill: 'url(#triangle)'
 
 
 # module.exports = widget

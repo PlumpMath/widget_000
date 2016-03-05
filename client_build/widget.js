@@ -43481,7 +43481,8 @@
 	      star_count: 3.5,
 	      display_name: data.display_name,
 	      total_rating: data.total_rating.toString().substr(0, 4),
-	      facebook_connections: data.social_information.connections
+	      facebook_connections: data.social_information.connections,
+	      item_as_described_score: 4
 	    });
 	  },
 	  componentWillReceiveProps: function(next_props) {
@@ -43501,6 +43502,17 @@
 	      origin: vec2.transformMat3(vec2.create(), [x, y], this.state.M),
 	      width: width * this.state.M[0],
 	      height: -(height * this.state.M[4])
+	    };
+	  },
+	  rect_r_t: function(subj_rect) {
+	    var height, rx, ry, width, x, y;
+	    width = subj_rect.width, height = subj_rect.height, x = subj_rect.x, y = subj_rect.y, rx = subj_rect.rx, ry = subj_rect.ry;
+	    return {
+	      origin: vec2.transformMat3(vec2.create(), [x, y], this.state.M),
+	      width: width * this.state.M[0],
+	      height: -(height * this.state.M[4]),
+	      rx: rx * this.state.M[0],
+	      ry: -(ry * this.state.M[4])
 	    };
 	  },
 	  line_t: function(subj_line) {
@@ -43985,12 +43997,77 @@
 	    var subj;
 	    subj = {
 	      x: -28.8,
-	      y: -20.2,
+	      y: -19.858,
 	      font_size: 2.33,
 	      text_width: 12
 	    };
 	    return this.text_t(subj);
 	  },
+	  progress_bar_translate: function() {
+	    return -(3.938 * this.state.M[4]);
+	  },
+	  progress_bar: function() {
+	    var subj;
+	    subj = {
+	      x: 0.98,
+	      y: -9.5,
+	      height: 3.309,
+	      width: 24.819,
+	      rx: .5,
+	      ry: .5
+	    };
+	    return this.rect_r_t(subj);
+	  },
+	  progress_at_zero: function() {},
+	  progress_bar_at_one: function() {
+	    var subj;
+	    subj = {
+	      x: 0.98,
+	      y: -9.5,
+	      height: 3.309,
+	      width: 4.9638,
+	      rx: .5,
+	      ry: .5
+	    };
+	    return this.rect_r_t(subj);
+	  },
+	  progress_bar_at_two: function() {
+	    var subj;
+	    subj = {
+	      x: 0.98,
+	      y: -9.5,
+	      height: 3.309,
+	      width: 9.9276,
+	      rx: .5,
+	      ry: .5
+	    };
+	    return this.rect_r_t(subj);
+	  },
+	  progress_bar_at_three: function() {
+	    var subj;
+	    subj = {
+	      x: 0.98,
+	      y: -9.5,
+	      height: 3.309,
+	      width: 14.8914,
+	      rx: .5,
+	      ry: .5
+	    };
+	    return this.rect_r_t(subj);
+	  },
+	  progress_bar_at_four: function() {
+	    var subj;
+	    subj = {
+	      x: 0.98,
+	      y: -9.5,
+	      height: 3.309,
+	      width: 19.8522,
+	      rx: .5,
+	      ry: .5
+	    };
+	    return this.rect_r_t(subj);
+	  },
+	  progress_at_five: function() {},
 	  review_blurb_area: function(pos) {
 	    var subj, y_pos;
 	    y_pos = function(pos) {
@@ -44035,7 +44112,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, communication_tag, delivery_tag, facebook_friends_tag, facebook_logo, facebook_number, i, item_as_described_tag, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, number_of_transactions_tag, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, progress_bar, progress_bar_at_four, progress_bar_at_one, progress_bar_at_three, progress_bar_at_two, progress_bar_translate, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -44084,6 +44161,12 @@
 	    item_as_described_tag = this.item_as_described_tag();
 	    communication_tag = this.communication_tag();
 	    delivery_tag = this.delivery_tag();
+	    progress_bar = this.progress_bar();
+	    progress_bar_translate = this.progress_bar_translate();
+	    progress_bar_at_one = this.progress_bar_at_one();
+	    progress_bar_at_two = this.progress_bar_at_two();
+	    progress_bar_at_three = this.progress_bar_at_three();
+	    progress_bar_at_four = this.progress_bar_at_four();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -44568,6 +44651,85 @@
 	      stroke: 'darkgrey',
 	      'stroke-width': .35
 	    }, "Delivery"), rect({
+	      x: progress_bar.origin[0],
+	      y: progress_bar.origin[1],
+	      width: progress_bar.width,
+	      height: progress_bar.height,
+	      rx: progress_bar.rx,
+	      ry: progress_bar.ry,
+	      fill: 'lightgrey'
+	    }), (function() {
+	      switch (this.state.item_as_described_score) {
+	        case 1:
+	          return rect({
+	            x: progress_bar_at_one.origin[0],
+	            y: progress_bar_at_one.origin[1],
+	            width: progress_bar_at_one.width,
+	            height: progress_bar_at_one.height,
+	            rx: progress_bar_at_one.rx,
+	            ry: progress_bar_at_one.ry,
+	            fill: '#EFBD00'
+	          });
+	        case 2:
+	          return rect({
+	            x: progress_bar_at_two.origin[0],
+	            y: progress_bar_at_two.origin[1],
+	            width: progress_bar_at_two.width,
+	            height: progress_bar_at_two.height,
+	            rx: progress_bar_at_two.rx,
+	            ry: progress_bar_at_two.ry,
+	            fill: '#EFBD00'
+	          });
+	        case 3:
+	          return rect({
+	            x: progress_bar_at_three.origin[0],
+	            y: progress_bar_at_three.origin[1],
+	            width: progress_bar_at_three.width,
+	            height: progress_bar_at_three.height,
+	            rx: progress_bar_at_three.rx,
+	            ry: progress_bar_at_three.ry,
+	            fill: '#EFBD00'
+	          });
+	        case 4:
+	          return rect({
+	            x: progress_bar_at_four.origin[0],
+	            y: progress_bar_at_four.origin[1],
+	            width: progress_bar_at_four.width,
+	            height: progress_bar_at_four.height,
+	            rx: progress_bar_at_four.rx,
+	            ry: progress_bar_at_four.ry,
+	            fill: '#EFBD00'
+	          });
+	        case 5:
+	          return rect({
+	            x: progress_bar.origin[0],
+	            y: progress_bar.origin[1],
+	            width: progress_bar.width,
+	            height: progress_bar.height,
+	            rx: progress_bar.rx,
+	            ry: progress_bar.ry,
+	            fill: '#EFBD00'
+	          });
+	      }
+	    }).call(this), rect({
+	      x: progress_bar.origin[0],
+	      y: progress_bar.origin[1],
+	      width: progress_bar.width,
+	      height: progress_bar.height,
+	      rx: progress_bar.rx,
+	      ry: progress_bar.ry,
+	      fill: 'lightgrey',
+	      transform: "translate(0, " + progress_bar_translate + ")"
+	    }), rect({
+	      x: progress_bar.origin[0],
+	      y: progress_bar.origin[1],
+	      width: progress_bar.width,
+	      height: progress_bar.height,
+	      rx: progress_bar.rx,
+	      ry: progress_bar.ry,
+	      fill: 'lightgrey',
+	      transform: "translate(0, " + (progress_bar_translate * 2) + ")"
+	    }), rect({
 	      x: reviews_rect.origin[0],
 	      y: reviews_rect.origin[1],
 	      width: reviews_rect.width,

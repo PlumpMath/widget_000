@@ -33,6 +33,7 @@ module.exports = widget = rr
             display_name: data.display_name
             total_rating: data.total_rating.toString().substr(0, 4)
             facebook_connections: data.social_information.connections
+            item_as_described_score: 4
 
         # request
         # .get "
@@ -64,6 +65,15 @@ module.exports = widget = rr
         origin: vec2.transformMat3 vec2.create(), [x, y], @state.M
         width: width * @state.M[0]
         height: -(height * @state.M[4])
+
+    rect_r_t: (subj_rect)->
+        {width, height, x, y, rx, ry} = subj_rect
+        origin: vec2.transformMat3 vec2.create(), [x, y], @state.M
+        width: width * @state.M[0]
+        height: -(height * @state.M[4])
+        rx: rx * @state.M[0]
+        ry: -(ry * @state.M[4])
+
 
     line_t: (subj_line)->
         {x1, y1, x2, y2} = subj_line
@@ -463,10 +473,71 @@ module.exports = widget = rr
     delivery_tag: ->
         subj =
             x: -28.8
-            y: -20.2
+            y: -19.858
             font_size: 2.33
             text_width: 12
         @text_t subj
+
+
+    # the other progress bars can be translated through y on a constant
+    progress_bar_translate: ->
+        return -(3.938 * @state.M[4])
+
+    progress_bar: ->
+        subj =
+            x: 0.98
+            y: -9.5
+            height: 3.309
+            width: 24.819
+            rx: .5
+            ry: .5
+        @rect_r_t subj
+
+    progress_at_zero: -> # that's easy
+
+    progress_bar_at_one: ->
+        subj =
+            x: 0.98
+            y: -9.5
+            height: 3.309
+            width: 4.9638
+            rx: .5
+            ry: .5
+        @rect_r_t subj
+
+    progress_bar_at_two: ->
+        subj =
+            x: 0.98
+            y: -9.5
+            height: 3.309
+            width: 9.9276
+            rx: .5
+            ry: .5
+        @rect_r_t subj
+
+    progress_bar_at_three: ->
+        subj =
+            x: 0.98
+            y: -9.5
+            height: 3.309
+            width: 14.8914
+            rx: .5
+            ry: .5
+        @rect_r_t subj
+
+    progress_bar_at_four: ->
+        subj =
+            x: 0.98
+            y: -9.5
+            height: 3.309
+            width: 19.8522
+            rx: .5
+            ry: .5
+        @rect_r_t subj
+
+    progress_at_five: ->
+        # done
+
 
 
 
@@ -556,6 +627,12 @@ module.exports = widget = rr
         item_as_described_tag = @item_as_described_tag()
         communication_tag = @communication_tag()
         delivery_tag = @delivery_tag()
+        progress_bar = @progress_bar()
+        progress_bar_translate = @progress_bar_translate()
+        progress_bar_at_one = @progress_bar_at_one()
+        progress_bar_at_two = @progress_bar_at_two()
+        progress_bar_at_three = @progress_bar_at_three()
+        progress_bar_at_four = @progress_bar_at_four()
 
         svg
             width: '100%'
@@ -1099,6 +1176,85 @@ module.exports = widget = rr
                 stroke: 'darkgrey'
                 'stroke-width': .35
                 "Delivery"
+
+            rect
+                x: progress_bar.origin[0]
+                y: progress_bar.origin[1]
+                width: progress_bar.width
+                height: progress_bar.height
+                rx: progress_bar.rx
+                ry: progress_bar.ry
+                fill: 'lightgrey'
+
+            switch @state.item_as_described_score
+                when 1
+                    rect
+                        x: progress_bar_at_one.origin[0]
+                        y: progress_bar_at_one.origin[1]
+                        width: progress_bar_at_one.width
+                        height: progress_bar_at_one.height
+                        rx: progress_bar_at_one.rx
+                        ry: progress_bar_at_one.ry
+                        fill: '#EFBD00'
+                when 2
+                    rect
+                        x: progress_bar_at_two.origin[0]
+                        y: progress_bar_at_two.origin[1]
+                        width: progress_bar_at_two.width
+                        height: progress_bar_at_two.height
+                        rx: progress_bar_at_two.rx
+                        ry: progress_bar_at_two.ry
+                        fill: '#EFBD00'
+                when 3
+                    rect
+                        x: progress_bar_at_three.origin[0]
+                        y: progress_bar_at_three.origin[1]
+                        width: progress_bar_at_three.width
+                        height: progress_bar_at_three.height
+                        rx: progress_bar_at_three.rx
+                        ry: progress_bar_at_three.ry
+                        fill: '#EFBD00'
+                when 4
+                    rect
+                        x: progress_bar_at_four.origin[0]
+                        y: progress_bar_at_four.origin[1]
+                        width: progress_bar_at_four.width
+                        height: progress_bar_at_four.height
+                        rx: progress_bar_at_four.rx
+                        ry: progress_bar_at_four.ry
+                        fill: '#EFBD00'
+                when 5
+                    rect
+                        x: progress_bar.origin[0]
+                        y: progress_bar.origin[1]
+                        width: progress_bar.width
+                        height: progress_bar.height
+                        rx: progress_bar.rx
+                        ry: progress_bar.ry
+                        fill: '#EFBD00'
+
+
+
+            rect
+                x: progress_bar.origin[0]
+                y: progress_bar.origin[1]
+                width: progress_bar.width
+                height: progress_bar.height
+                rx: progress_bar.rx
+                ry: progress_bar.ry
+                fill: 'lightgrey'
+                transform: "translate(0, #{progress_bar_translate})"
+
+            rect
+                x: progress_bar.origin[0]
+                y: progress_bar.origin[1]
+                width: progress_bar.width
+                height: progress_bar.height
+                rx: progress_bar.rx
+                ry: progress_bar.ry
+                fill: 'lightgrey'
+                transform: "translate(0, #{progress_bar_translate * 2})"
+
 
 
 

@@ -43769,6 +43769,16 @@
 	    };
 	    return this.text_t(subj);
 	  },
+	  main_separator_one: function() {
+	    var subj;
+	    subj = {
+	      x1: -34.6432,
+	      y1: 20.4757,
+	      x2: -34.6432,
+	      y2: -24.19855
+	    };
+	    return this.line_t(subj);
+	  },
 	  transactions_assess_area: function() {
 	    var subj;
 	    subj = {
@@ -43793,7 +43803,7 @@
 	    var subj;
 	    subj = {
 	      x: -29.5,
-	      y: 3.3,
+	      y: .5,
 	      font_size: 7.03,
 	      text_width: 13.44
 	    };
@@ -43809,7 +43819,6 @@
 	    };
 	    return this.rect_t(subj);
 	  },
-	  clip_half_one: function() {},
 	  star_two: function() {
 	    var subj;
 	    subj = {
@@ -43820,7 +43829,6 @@
 	    };
 	    return this.rect_t(subj);
 	  },
-	  clip_half_two: function() {},
 	  star_three: function() {
 	    var subj;
 	    subj = {
@@ -43831,7 +43839,6 @@
 	    };
 	    return this.rect_t(subj);
 	  },
-	  clip_path_three: function() {},
 	  star_four: function() {
 	    var subj;
 	    subj = {
@@ -43988,7 +43995,7 @@
 	    return this.text_t(subj);
 	  },
 	  render: function() {
-	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
+	    var area_rect, facebook_friends_tag, facebook_logo, facebook_number, i, linkedIn_connections_tag, linkedIn_logo, linkedIn_number, main_separator_one, overview_main_area, portrait_photo_border, portrait_photo_circle, portrait_photo_square, portrait_ring_circle, positive_feedback_banner, positive_text, positivity_count_text, review_blurb_area, reviews_number, reviews_rect, reviews_scroller, reviews_title, social_info_separator_1, social_info_separator_2, social_media_area, star_five, star_four, star_one, star_three, star_two, stars_count_area, stars_number, tab_one, tab_one_image, tab_three, tab_three_image, tab_two, tab_two_image, tabs_area, temp_color, top_merchant_img, top_yellow_bar_rect, transactions_assess_area, twitter_followers_tag, twitter_logo, twitter_number, username_banner;
 	    area_rect = this.area_rect();
 	    top_yellow_bar_rect = this.top_yellow_bar_rect();
 	    reviews_rect = this.reviews_rect();
@@ -44032,6 +44039,7 @@
 	    star_three = this.star_three();
 	    star_four = this.star_four();
 	    star_five = this.star_five();
+	    main_separator_one = this.main_separator_one();
 	    return svg({
 	      width: '100%',
 	      height: '100%'
@@ -44202,18 +44210,19 @@
 	      'font-size': twitter_followers_tag.font_size,
 	      fill: 'grey',
 	      'text-anchor': 'middle'
-	    }, "Followers"), rect({
-	      x: tabs_area.origin[0],
-	      y: tabs_area.origin[1],
-	      width: tabs_area.width,
-	      height: tabs_area.height,
-	      fill: 'purple'
+	    }, "Followers"), line({
+	      x1: main_separator_one.x1,
+	      y1: main_separator_one.y1,
+	      x2: main_separator_one.x2,
+	      y2: main_separator_one.y2,
+	      'stroke-width': .5,
+	      stroke: 'lightgrey'
 	    }), rect({
 	      x: tab_one.origin[0],
 	      y: tab_one.origin[1],
 	      width: tab_one.width,
 	      height: tab_one.height,
-	      fill: 'orange'
+	      fill: this.state.active_tab === 0 ? 'url(#triangle)' : 'lightgrey'
 	    }), image({
 	      x: tab_one_image.origin[0],
 	      y: tab_one_image.origin[1],
@@ -44225,9 +44234,9 @@
 	      y: tab_two.origin[1],
 	      width: tab_two.width,
 	      height: tab_two.height,
-	      fill: 'grey',
+	      fill: this.state.active_tab === 1 ? 'url(#triangle)' : 'lightgrey',
 	      onClick: function() {
-	        return c('here!!!!!!!!!!!!!!!!!!!');
+	        return c('test');
 	      }
 	    }), image({
 	      x: tab_two_image.origin[0],
@@ -44240,7 +44249,7 @@
 	      y: tab_three.origin[1],
 	      width: tab_three.width,
 	      height: tab_three.height,
-	      fill: 'green'
+	      fill: this.state.active_tab === 2 ? 'url(#triangle)' : 'lightgrey'
 	    }), image({
 	      x: tab_three_image.origin[0],
 	      y: tab_three_image.origin[1],
@@ -44252,7 +44261,7 @@
 	      y: stars_count_area.origin[1],
 	      width: stars_count_area.width,
 	      height: stars_count_area.height,
-	      fill: 'white',
+	      fill: 'url(#triangle)',
 	      opacity: 0.6
 	    }), text({
 	      x: stars_number.origin[0],
@@ -44260,7 +44269,7 @@
 	      'font-size': stars_number.font_size,
 	      fill: 'grey',
 	      'text-length': stars_number.text_width
-	    }, "4.5"), this.state.star_count > 0 ? image({
+	    }, "" + this.state.star_count), this.state.star_count > 0 ? image({
 	      x: star_one.origin[0],
 	      y: star_one.origin[1],
 	      width: this.state.star_count < 1 ? star_one.width / 2 : star_one.width,
@@ -44295,7 +44304,7 @@
 	      y: transactions_assess_area.origin[1],
 	      width: transactions_assess_area.width,
 	      height: transactions_assess_area.height,
-	      fill: 'grey',
+	      fill: 'url(#triangle)',
 	      opacity: 0.69
 	    }), rect({
 	      x: reviews_rect.origin[0],

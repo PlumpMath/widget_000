@@ -275,6 +275,14 @@ module.exports = widget = rr
             font_size: 2.89
         @text_t subj
 
+    main_separator_one: ->
+        subj =
+            x1: -34.6432
+            y1: 20.4757
+            x2: -34.6432
+            y2: -24.19855
+        @line_t subj
+
     transactions_assess_area: ->
         subj =
             width: 65.77
@@ -296,7 +304,7 @@ module.exports = widget = rr
     stars_number: ->
         subj =
             x: -29.5
-            y: 3.3
+            y: .5
             font_size: 7.03
             text_width: 13.44
         @text_t subj
@@ -310,7 +318,7 @@ module.exports = widget = rr
         @rect_t subj
 
 
-    clip_half_one: ->
+    # clip_half_one: ->
 
     star_two: ->
         subj =
@@ -320,7 +328,7 @@ module.exports = widget = rr
             height: 7.7
         @rect_t subj
 
-    clip_half_two: ->
+    # clip_half_two: ->
 
     star_three: ->
         subj =
@@ -330,7 +338,7 @@ module.exports = widget = rr
             height: 7.7
         @rect_t subj
 
-    clip_path_three: ->
+    # clip_path_three: ->
 
     star_four: ->
         subj =
@@ -510,6 +518,7 @@ module.exports = widget = rr
         star_three = @star_three()
         star_four = @star_four()
         star_five = @star_five()
+        main_separator_one = @main_separator_one()
 
 
         svg
@@ -799,21 +808,28 @@ module.exports = widget = rr
                 "Followers"
 
 
+            line
+                x1: main_separator_one.x1
+                y1: main_separator_one.y1
+                x2: main_separator_one.x2
+                y2: main_separator_one.y2
+                'stroke-width': .5
+                stroke: 'lightgrey'
 
 
-            rect
-                x: tabs_area.origin[0]
-                y: tabs_area.origin[1]
-                width: tabs_area.width
-                height: tabs_area.height
-                fill: 'purple'
+            # rect
+            #     x: tabs_area.origin[0]
+            #     y: tabs_area.origin[1]
+            #     width: tabs_area.width
+            #     height: tabs_area.height
+            #     fill: 'purple'
 
             rect
                 x: tab_one.origin[0]
                 y: tab_one.origin[1]
                 width: tab_one.width
                 height: tab_one.height
-                fill: 'orange'
+                fill: if @state.active_tab is 0 then 'url(#triangle)' else 'lightgrey'
             image
                 x: tab_one_image.origin[0]
                 y: tab_one_image.origin[1]
@@ -825,8 +841,8 @@ module.exports = widget = rr
                 y: tab_two.origin[1]
                 width: tab_two.width
                 height: tab_two.height
-                fill: 'grey'
-                onClick: -> c 'here!!!!!!!!!!!!!!!!!!!'
+                fill: if @state.active_tab is 1 then 'url(#triangle)' else 'lightgrey'
+                onClick: -> c 'test'
             image
                 x: tab_two_image.origin[0]
                 y: tab_two_image.origin[1]
@@ -838,7 +854,7 @@ module.exports = widget = rr
                 y: tab_three.origin[1]
                 width: tab_three.width
                 height: tab_three.height
-                fill: 'green'
+                fill: if @state.active_tab is 2 then 'url(#triangle)' else 'lightgrey'
             image
                 x: tab_three_image.origin[0]
                 y: tab_three_image.origin[1]
@@ -851,7 +867,7 @@ module.exports = widget = rr
                 y: stars_count_area.origin[1]
                 width: stars_count_area.width
                 height: stars_count_area.height
-                fill: 'white'
+                fill: 'url(#triangle)'
                 opacity: 0.6
 
             text
@@ -861,7 +877,7 @@ module.exports = widget = rr
                 fill: 'grey'
                 'text-length': stars_number.text_width
                 ,
-                "4.5"
+                "#{@state.star_count}"
 
             if @state.star_count > 0
                 image
@@ -929,7 +945,7 @@ module.exports = widget = rr
                 y: transactions_assess_area.origin[1]
                 width: transactions_assess_area.width
                 height: transactions_assess_area.height
-                fill: 'grey'
+                fill: 'url(#triangle)'
                 opacity: 0.69
 
 
